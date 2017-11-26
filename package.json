@@ -1,0 +1,41 @@
+{
+  "name": "@jsq/async-seq",
+  "version": "0.0.1",
+  "description": "Lazy sequence operators for JavaScript backed by async iterators.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
+    "docs": "typedoc src",
+    "prepublishOnly": "npm run build && npm run docs",
+    "pretest": "tsc -p tsconfig.test.json",
+    "test": "alsatian \"./**/*.spec.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeskew/es-seq.git"
+  },
+  "keywords": [
+    "asynciterator",
+    "seq"
+  ],
+  "author": "Jonathan Eskew <jonathan@jeskew.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jeskew/async-seq/issues"
+  },
+  "homepage": "https://github.com/jeskew/async-seq#readme",
+  "devDependencies": {
+    "alsatian": "^2.0.0",
+    "nyc": "^11.3.0",
+    "typedoc": "^0.9.0",
+    "typescript": "^2.6.1"
+  },
+  "nyc": {
+    "exclude": [
+      "build/asyncIteratorSymbolPolyfill.js",
+      "**/*.spec.js"
+    ]
+  }
+}

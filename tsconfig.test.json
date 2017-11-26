@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "sourceMap": false,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "inlineSourceMap": true,
+    "inlineSources": true
+  }
+}

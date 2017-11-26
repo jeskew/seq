@@ -1,0 +1,10 @@
+.nyc_output/
+build/
+coverage/
+node_modules/
+package/
+
+package-lock.json
+yarn.lock
+*.tgz
+*.log

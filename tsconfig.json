@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.collection",
+      "es2015.iterable",
+      "es2015.promise",
+      "es2015.symbol.wellknown",
+      "esnext.asynciterable"
+    ],
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "downlevelIteration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "typedocOptions": {
+    "mode": "file",
+    "out": "docs",
+    "name": "async-seq",
+    "readme": "none",
+    "exclude": "**/*.spec.ts",
+    "excludeNotExported": true
+  }
+}

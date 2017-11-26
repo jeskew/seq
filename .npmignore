@@ -1,0 +1,15 @@
+.nyc_output/
+coverage/
+docs/
+package/
+src/
+
+package-lock.json
+yarn.lock
+
+*.tgz
+*.log
+
+*.spec.js
+*.spec.d.ts
+*.spec.js.map
