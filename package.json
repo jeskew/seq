@@ -8,7 +8,7 @@
     "build": "tsc",
     "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
     "docs": "typedoc src",
-    "prepublishOnly": "npm run build && npm run docs",
+    "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
     "test": "alsatian \"./**/*.spec.js\""
   },

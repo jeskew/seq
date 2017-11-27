@@ -35,5 +35,5 @@ const sumOfAllEvenSquaresUnderTenMillion = infiniteRange()
     |> await;
 ```
 
-For documentation of the functions provided by this library, please see the API
-documentation.
+For documentation of the functions provided by this library, please see [the API
+documentation](https://jeskew.github.io/async-seq/).
