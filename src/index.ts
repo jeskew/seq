@@ -182,10 +182,52 @@ export async function *map<T, R>(
  * Inspired by [RxJS's `merge`](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-merge)
  * operator.
  */
-export function merge<T>(
+export async function *merge<T>(
     ...iterables: Array<Iterable<T>|AsyncIterable<T>>
-): AsyncIterableIterator<T> {
-    return new MergeIterator(...iterables);
+) {
+    const pendingResults: Array<PendingResult<T>> = [];
+    for (const iterable of iterables) {
+        refillPending(pendingResults, iteratorFromIterable(iterable));
+    }
+
+    while (pendingResults.length > 0) {
+        const {
+            result: {value, done},
+            iterator
+        } = await Promise.race(pendingResults.map(val => val.result));
+
+        for (let i = pendingResults.length - 1; i >= 0; i--) {
+            if (pendingResults[i].iterator === iterator) {
+                pendingResults.splice(i, 1);
+            }
+        }
+
+        if (!done) {
+            yield value;
+            refillPending(pendingResults, iterator);
+        } else if (value !== undefined) {
+            yield value;
+        }
+    }
+}
+
+interface PendingResult<T> {
+    iterator: Iterator<T>|AsyncIterator<T>;
+    result: Promise<{
+        iterator: Iterator<T>|AsyncIterator<T>;
+        result: IteratorResult<T>
+    }>;
+}
+
+function refillPending<T>(
+    pending: Array<PendingResult<T>>,
+    iterator: Iterator<T>|AsyncIterator<T>
+): void {
+    const result = Promise.resolve(iterator.next()).then(resolved => ({
+        iterator,
+        result: resolved
+    }));
+    pending.push({iterator, result});
 }
 
 /**
@@ -418,86 +460,6 @@ function iteratorFromIterable<T>(
     } else if (typeof (iterable as Iterable<T>)[Symbol.iterator] === 'function') {
         return (iterable as Iterable<T>)[Symbol.iterator]();
     } else {
-        throw new Error('The value provided to `reduce` was neither an async iterator nor an iterator');
-    }
-}
-
-interface PendingResult<T> {
-    iterator: Iterator<T>|AsyncIterator<T>;
-    result: Promise<{
-        iterator: Iterator<T>|AsyncIterator<T>;
-        result: IteratorResult<T>
-    }>;
-}
-
-class MergeIterator<T> implements AsyncIterableIterator<T> {
-    private readonly pending: Array<PendingResult<T>> = [];
-    private err: any;
-
-    constructor(
-        ...iterables: Array<Iterable<T>|AsyncIterable<T>>
-    ) {
-        for (const iterable of iterables) {
-            this.addPendingFromIterator(iteratorFromIterable(iterable));
-        }
-    }
-
-    [Symbol.asyncIterator]() {
-        return this;
-    }
-
-    async next(): Promise<IteratorResult<T>> {
-        if (this.err !== undefined) {
-            const {err} = this;
-            this.err = undefined;
-            throw err;
-        }
-
-        if (this.pending.length > 0) {
-            const {
-                result: {value, done},
-                iterator
-            } = await Promise.race(this.pending.map(val => val.result));
-            this.removeIteratorFromPending(iterator);
-            if (!done) {
-                this.addPendingFromIterator(iterator);
-            }
-
-            if (!done || value !== undefined) {
-                return {
-                    done: done && this.pending.length === 0,
-                    value,
-                };
-            } else {
-                return this.next();
-            }
-        }
-
-        return {done: true} as IteratorResult<T>;
-    }
-
-    private addPendingFromIterator(
-        iterator: Iterator<T>|AsyncIterator<T>
-    ): void {
-        // TODO If/when Promise.try advances, that should be used instead of
-        // Promise.resolve().then
-        const result = Promise.resolve().then(() => iterator.next())
-            .then(resolved => ({iterator, result: resolved}));
-        this.pending.push({iterator, result});
-
-        result.catch(err => {
-            this.err = err;
-            this.removeIteratorFromPending(iterator);
-        });
-    }
-
-    private removeIteratorFromPending(
-        iterator: Iterator<T>|AsyncIterator<T>
-    ) {
-        for (let i = this.pending.length - 1; i >= 0; i--) {
-            if (this.pending[i].iterator === iterator) {
-                this.pending.splice(i, 1);
-            }
-        }
+        throw new Error('The value provided was neither an async iterator nor an iterator');
     }
 }

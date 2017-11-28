@@ -34,7 +34,6 @@
   },
   "nyc": {
     "exclude": [
-      "build/asyncIteratorSymbolPolyfill.js",
       "**/*.spec.js"
     ]
   }

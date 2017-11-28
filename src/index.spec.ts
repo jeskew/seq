@@ -265,56 +265,25 @@ export class FunctionalTests {
         }(),
         [0],
     )
+    @TestCase(
+        [0, 1, 2, 3],
+        async function *() {
+            yield 0;
+            await new Promise(resolve => setTimeout(resolve, 10));
+            return 2;
+        }(),
+        async function *() {
+            yield 1;
+            await new Promise(resolve => setTimeout(resolve, 10));
+            return 3;
+        }()
+    )
     @AsyncTest('Basic test cases for `merge`')
     async merge<T>(
         expected: Array<T>,
         ...iterables: Array<Iterable<T>|AsyncIterable<T>>
     ) {
         Expect(await collect(merge(...iterables))).toEqual(expected);
-    }
-
-    @TestCase(
-        range(5),
-        throwOnIteration(),
-        [0, 1, 2, 3, 4]
-    )
-    @TestCase(
-        range(5),
-        throwAfterIteration(),
-        [0, 0, 1, 2, 3, 4]
-    )
-    @AsyncTest('Merging with generators that throw')
-    async mergeWithErrors<T>(
-        safeIterable: Array<Iterable<T>|AsyncIterable<T>>,
-        explosiveIterable: Array<Iterable<T>|AsyncIterable<T>>,
-        expected: Array<T>
-    ) {
-        let expectedErrorEncountered = false;
-        const iterable = merge(
-            explosiveIterable,
-            safeIterable
-        );
-        const results: Array<T> = [];
-        let done = false;
-
-        while (!done) {
-            await iterable.next()
-                .then(
-                    result => {
-                        done = result.done;
-                        if (!done || result.value !== undefined) {
-                            results.push(result.value as any);
-                        }
-                    },
-                    err => {
-                        Expect(err.message).toBe('PANIC PANIC');
-                        expectedErrorEncountered = true;
-                    }
-                )
-        }
-
-        Expect(expectedErrorEncountered).toBe(true);
-        Expect(results).toEqual(expected);
     }
 
     @TestCase(
@@ -385,7 +354,7 @@ export class FunctionalTests {
             await reduce(() => 0, 12 as any);
         } catch (e) {
             Expect(e.message).toBe(
-                'The value provided to `reduce` was neither an async iterator nor an iterator'
+                'The value provided was neither an async iterator nor an iterator'
             );
             expectedErrorEncountered = true;
         }
@@ -529,6 +498,11 @@ export class FunctionalTests {
         asyncify(range(1, 10, 2)),
         [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
     )
+    @TestCase(
+        inclusiveRange(5),
+        inclusiveRange(10),
+        [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+    )
     @AsyncTest('Basic test cases for `zip`')
     async zip<K, V>(
         keys: Iterable<K>|AsyncIterable<K>,
@@ -556,11 +530,16 @@ function *fibonacci() {
     }
 }
 
-function *throwOnIteration(): IterableIterator<never> {
-    throw new Error('PANIC PANIC');
+// A generator that both yields and returns, thereby exercising code branches
+// that handle iterator results where `done` is `true` and `value` is defined
+function *inclusiveRange(end: number) {
+    for (let i = 0; i < end; i++) {
+        yield i;
+    }
+
+    return end;
 }
 
-function *throwAfterIteration() {
-    yield 0;
+function *throwOnIteration(): IterableIterator<never> {
     throw new Error('PANIC PANIC');
 }

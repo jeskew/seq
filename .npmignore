@@ -1,10 +1,14 @@
+.idea/
 .nyc_output/
+.vscode/
 coverage/
 docs/
 package/
 src/
 
 package-lock.json
+tsconfig.json
+tsconfig.test.json
 yarn.lock
 
 *.tgz
