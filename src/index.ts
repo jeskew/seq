@@ -205,8 +205,6 @@ export async function *merge<T>(
         if (!done) {
             yield value;
             refillPending(pendingResults, iterator);
-        } else if (value !== undefined) {
-            yield value;
         }
     }
 }
@@ -287,29 +285,21 @@ export async function reduce<T, R>(
     iterableOrInitialValue: R|Iterable<T>|AsyncIterable<T>,
     iterable?: Iterable<T>|AsyncIterable<T>
 ) {
-    let iterator: Iterator<T>|AsyncIterator<T>;
-    let result: IteratorResult<T>;
     let value: R = iterableOrInitialValue as R;
-    let done: boolean = false;
-    if (iterable === undefined) {
-        iterator = iteratorFromIterable(
-            iterableOrInitialValue as Iterable<T>|AsyncIterable<T>
-        );
-        result = await iterator.next();
-        value = result.value as any;
-        done = result.done;
-    } else {
-        iterator = iteratorFromIterable(iterable);
-        value = iterableOrInitialValue as R;
+    let initialized = true;
+    if (!iterable) {
+        iterable = iterableOrInitialValue as Iterable<T>|AsyncIterable<T>;
+        initialized = false;
     }
 
-    do {
-        result = await iterator.next();
-        done = result.done;
-        if (result.value !== undefined) {
-            value = reducer(value, result.value);
+    for await (const element of iterable) {
+        if (initialized) {
+            value = reducer(value, element);
+        } else {
+            value = <R><any>element;
+            initialized = true;
         }
-    } while (!done);
+    }
 
     return value;
 }
@@ -439,16 +429,11 @@ export async function *zip<K, V>(
         const {done: keysDone, value: key} = await keyIterator.next();
         const {done: valuesDone, value} = await valueIterator.next();
 
-        if (
-            (!keysDone || key !== undefined) &&
-            (!valuesDone || value !== undefined)
-        ) {
-            yield [key, value];
-        }
-
         if (keysDone || valuesDone) {
             break;
         }
+
+        yield [key, value];
     }
 }
 
@@ -457,9 +442,7 @@ function iteratorFromIterable<T>(
 ): Iterator<T>|AsyncIterator<T> {
     if (typeof (iterable as AsyncIterable<T>)[Symbol.asyncIterator] === 'function') {
         return (iterable as AsyncIterable<T>)[Symbol.asyncIterator]();
-    } else if (typeof (iterable as Iterable<T>)[Symbol.iterator] === 'function') {
-        return (iterable as Iterable<T>)[Symbol.iterator]();
-    } else {
-        throw new Error('The value provided was neither an async iterator nor an iterator');
     }
+
+    return (iterable as Iterable<T>)[Symbol.iterator]();
 }
