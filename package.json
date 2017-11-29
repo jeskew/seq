@@ -1,6 +1,6 @@
 {
   "name": "@jsq/async-seq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lazy sequence operators for JavaScript backed by async iterators.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
