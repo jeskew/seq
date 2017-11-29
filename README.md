@@ -24,7 +24,9 @@ import {filter, map, sum, takeWhile} from '@jsq/async-seq';
 
 const infiniteRange = function *() {
     let i = 0;
-    yield i++;
+    while (true) {
+        yield i++;
+    }
 }
 
 const sumOfAllEvenSquaresUnderTenMillion = infiniteRange()

@@ -10,6 +10,7 @@
     "docs": "typedoc src",
     "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
+    "release": "standard-version",
     "test": "alsatian \"./**/*.spec.js\""
   },
   "repository": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "alsatian": "^2.0.0",
     "nyc": "^11.3.0",
+    "standard-version": "^4.2.0",
     "typedoc": "^0.9.0",
     "typescript": "^2.6.1"
   },
