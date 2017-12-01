@@ -298,6 +298,10 @@ export class FunctionalTests {
         [0, 20, 3],
         [0, 3, 6, 9, 12, 15, 18]
     )
+    @TestCase(
+        [10, 0, -1],
+        [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    )
     @Test('Basic test cases for `range`')
     range(
         args: [number]|[number, number]|[number, number, number],

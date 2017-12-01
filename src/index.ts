@@ -257,10 +257,19 @@ export function *range(
         step = 1;
     }
 
-    while (start < end) {
+    const comparator = step > 0 ? lt : gt;
+    while (comparator(start, end)) {
         yield start;
         start += step;
     }
+}
+
+function gt(a: number, b: number): boolean {
+    return a > b;
+}
+
+function lt(a: number, b: number): boolean {
+    return a < b;
 }
 
 /**

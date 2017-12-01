@@ -22,14 +22,15 @@ stage 1) in mind:
 ```typescript
 import {filter, map, sum, takeWhile} from '@jsq/async-seq';
 
-const infiniteRange = function *() {
-    let i = 0;
-    while (true) {
-        yield i++;
-    }
+function *fibonacci() {
+    let i = 1, j = 1;
+    do {
+        yield i;
+        [i, j] = [j, j + i];
+    } while (true);
 }
 
-const sumOfAllEvenSquaresUnderTenMillion = infiniteRange()
+const sumOfAllEvenFibonacciNumbersUnderTenMillion = fibonacci()
     |> map.bind(null, x => x * x)
     |> filter.bind(null, x => x % 2 === 0)
     |> takeWhile.bind(null, x => x < 10000000)
