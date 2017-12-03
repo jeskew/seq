@@ -1,5 +1,8 @@
 # Async sequence operators
 
+[![Apache 2 License](https://img.shields.io/github/license/jeskew/async-seq.svg?style=flat)](http://aws.amazon.com/apache-2-0/)
+[![Build Status](https://travis-ci.org/jeskew/async-seq.svg?branch=master)](https://travis-ci.org/jeskew/async-seq)
+
 This package provides a number of functions for filtering, reducing, combining,
 and otherwise transforming asynchronous iterators. Where possible, the functions
 in this library mirror those found on `Array.prototype`. Unlike the methods on

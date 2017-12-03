@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+  - "lts/*"
+  - "lts/boron"
+  - "lts/argon"
+
+sudo: false
+
+script:
+  - npm run coverage
