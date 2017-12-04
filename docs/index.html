@@ -66,6 +66,23 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/recursiveasynciterable.html" class="tsd-kind-icon">Recursive<wbr>Async<wbr>Iterable</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/recursivesynciterable.html" class="tsd-kind-icon">Recursive<wbr>Sync<wbr>Iterable</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias"><a href="index.html#elementoriterable" class="tsd-kind-icon">Element<wbr>OrIterable</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#recursiveiterable" class="tsd-kind-icon">Recursive<wbr>Iterable</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#syncorasynciterable" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterable</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#syncorasynciterator" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#syncorasynciteratorresult" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator<wbr>Result</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#collect" class="tsd-kind-icon">collect</a></li>
@@ -74,6 +91,8 @@
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#every" class="tsd-kind-icon">every</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#filter" class="tsd-kind-icon">filter</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#find" class="tsd-kind-icon">find</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#flatten" class="tsd-kind-icon">flatten</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#includes" class="tsd-kind-icon">includes</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#interleave" class="tsd-kind-icon">interleave</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#map" class="tsd-kind-icon">map</a></li>
@@ -82,6 +101,7 @@
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#reduce" class="tsd-kind-icon">reduce</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#repeat" class="tsd-kind-icon">repeat</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skip" class="tsd-kind-icon">skip</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skipwhile" class="tsd-kind-icon">skip<wbr>While</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#some" class="tsd-kind-icon">some</a></li>
 								<li class="tsd-kind-function"><a href="index.html#sum" class="tsd-kind-icon">sum</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#take" class="tsd-kind-icon">take</a></li>
@@ -94,21 +114,104 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="elementoriterable" class="tsd-anchor"></a>
+					<h3>Element<wbr>OrIterable</h3>
+					<div class="tsd-signature tsd-kind-icon">Element<wbr>OrIterable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L50">index.ts:50</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An element yielded by an iterable that may or may not be iterable itself.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="recursiveiterable" class="tsd-anchor"></a>
+					<h3>Recursive<wbr>Iterable</h3>
+					<div class="tsd-signature tsd-kind-icon">Recursive<wbr>Iterable<span class="tsd-signature-symbol">:</span> <a href="interfaces/recursivesynciterable.html" class="tsd-signature-type">RecursiveSyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/recursiveasynciterable.html" class="tsd-signature-type">RecursiveAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L45">index.ts:45</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A synchronous or asynchronous iterable whose elements are either of type T or
+							are themselves synchronous or asynchronous iterables of an arbitrary depth.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="syncorasynciterable" class="tsd-anchor"></a>
+					<h3>Sync<wbr>OrAsync<wbr>Iterable</h3>
+					<div class="tsd-signature tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L12">index.ts:12</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A synchronous or asynchronous iterable.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="syncorasynciterator" class="tsd-anchor"></a>
+					<h3>Sync<wbr>OrAsync<wbr>Iterator</h3>
+					<div class="tsd-signature tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L17">index.ts:17</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A synchronous or asynchronous iterator.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="syncorasynciteratorresult" class="tsd-anchor"></a>
+					<h3>Sync<wbr>OrAsync<wbr>Iterator<wbr>Result</h3>
+					<div class="tsd-signature tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L22">index.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The result of a synchronous or asynchronous iterator.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 					<a name="collect" class="tsd-anchor"></a>
 					<h3>collect</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">collect&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">collect&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L13">index.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L56">index.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Collects the values yielded by a synchronous or asynchronous iterable into an
+									array.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -119,12 +222,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a promise resolved with an array of the values yielded by the
-							provided <code>iterable</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -132,16 +233,22 @@
 					<a name="concat" class="tsd-anchor"></a>
 					<h3>concat</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">concat&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">concat&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L30">index.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L71">index.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Combines zero or more synchronous or asynchronous iterables into a single
+										async iterable. The resulting iterable will yield all values from the first
+										iterable provided, followed by all values yielded by the next iterable, etc.,
+									for each iterable provided as an argument.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -152,14 +259,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a single async iterable combining any number of synchronous or
-								asynchronous iterables. The resulting iterable will yield all values from the
-								first iterable provided, followed by all values yielded by the next iterable,
-							etc., for each iterable provided as an argument.</p>
 						</li>
 					</ul>
 				</section>
@@ -167,16 +270,22 @@
 					<a name="distinct" class="tsd-anchor"></a>
 					<h3>distinct</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">distinct&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">distinct&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L47">index.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L82">index.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes duplicates from a synchronous or asynchronous iterable.</p>
+								</div>
+								<p>Distinctness is evaluated by maintaining a set of previously yielded values,
+									i.e., it is evaluated via the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-samevaluezero"><code>SameValueZero</code> algorithm</a>
+								described in the ECMAScript 2015 specification.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -187,15 +296,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that yields values yielded by the provided <code>iterable</code>
-								with duplicates removed. Distinctness is evaluated by maintaining a set
-								of previously yielded values, i.e., it is evaluated via the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-samevaluezero"><code>SameValueZero</code>
-								algorithm</a>
-							described in the ECMAScript 2015 specification.</p>
 						</li>
 					</ul>
 				</section>
@@ -203,16 +307,20 @@
 					<a name="every" class="tsd-anchor"></a>
 					<h3>every</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">every&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">every&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L63">index.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L100">index.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether all items yielded by an iterable satisfy the supplied
+									predicate.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -224,10 +332,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -237,19 +350,20 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>when the provided predicate returns <code>true</code> for each item yielded by
-							the provided iterable.</p>
 						</li>
 					</ul>
 				</section>
@@ -257,16 +371,20 @@
 					<a name="filter" class="tsd-anchor"></a>
 					<h3>filter</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">filter&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">filter&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L80">index.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L121">index.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes values that fail to satisfy the supplied predicate from the supplied
+									iterable.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -278,10 +396,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -291,19 +414,20 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an asynchronous iterator that yields each value yielded by the
-							provided iterable for which the provided predicate returns <code>true</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -311,16 +435,20 @@
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">find&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L95">index.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L140">index.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Locates the first value yielded by the supplied iterable that satisfies the
+									supplied predicate.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -332,10 +460,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -345,105 +478,41 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>the first value yielded by the provided iterable for which the
-							provided predicate returns <code>true</code>.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="includes" class="tsd-anchor"></a>
-					<h3>includes</h3>
+					<a name="flatmap" class="tsd-anchor"></a>
+					<h3>flat<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">includes&lt;T&gt;<span class="tsd-signature-symbol">(</span>searchElement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L112">index.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L161">index.ts:161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>searchElement: <span class="tsd-signature-type">T</span></h5>
-								</li>
-								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p><code>true</code> if the provided <code>searchElement</code> is yielded by the provided
-							<code>iterable</code>.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="interleave" class="tsd-anchor"></a>
-					<h3>interleave</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">interleave&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L129">index.ts:129</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that yields a value from each iterable provided as an
-							argument.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="map" class="tsd-anchor"></a>
-					<h3>map</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">map&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L165">index.ts:165</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Maps each element yielded by the supplied iterable and flattens the result.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -458,10 +527,14 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>f: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The function to apply to every value yielded by the supplied
+										iterable.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -471,36 +544,51 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that yields the result of apply the provided <code>f</code>
-							function to each value yielded by the provided <code>iterable</code>.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="merge" class="tsd-anchor"></a>
-					<h3>merge</h3>
+					<a name="flatten" class="tsd-anchor"></a>
+					<h3>flatten</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">merge&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#recursiveiterable" class="tsd-signature-type">RecursiveIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="index.html#recursiveiterable" class="tsd-signature-type">RecursiveIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">0</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">1</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">2</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">3</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">4</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;T&gt;<span class="tsd-signature-symbol">(</span>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">5</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L185">index.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L176">index.ts:176</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Flattens an iterable that yields elements of type T or
+									{SyncOrAsyncIterable}<T> into an interable that yields elements of type T.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -511,17 +599,456 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that yields values from all provided iterables as they
-							become available.</p>
-							<p>When the iterables provided are synchronous, <code>merge</code> is equivalent to
-								<code>interleave</code>, but when one or more of the iterables are asynchronous, values
-							will be yielded from each iterable as soon as they are ready.</p>
-							<p>Inspired by <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-merge">RxJS&#39;s <code>merge</code></a>
-							operator.</p>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L191">index.ts:191</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to <code>depth</code> times.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+											themselves iterable. Specify <code>Infinity</code> to flatten the
+										iterable until it contains only non-iterable elements.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#recursiveiterable" class="tsd-signature-type">RecursiveIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="index.html#recursiveiterable" class="tsd-signature-type">RecursiveIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L206">index.ts:206</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L221">index.ts:221</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to one time.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L236">index.ts:236</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to two times.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">2</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L251">index.ts:251</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to three times.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">3</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L272">index.ts:272</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to four times.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">4</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L295">index.ts:295</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an asynchronous iterable that yields all elements yielded by the
+									provided iterator, flattened up to five times.</p>
+								</div>
+								<p>This method will not flatten yielded strings into characters.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>depth: <span class="tsd-signature-type">5</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of times to recursively flatten elements that are
+										themselves iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><a href="index.html#elementoriterable" class="tsd-signature-type">ElementOrIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to flatten.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="includes" class="tsd-anchor"></a>
+					<h3>includes</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">includes&lt;T&gt;<span class="tsd-signature-symbol">(</span>searchElement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L332">index.ts:332</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if any of the values yielded by the supplied iterator are equal to
+									(<code>===</code>) a particular value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>searchElement: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value against which all yielded values will be
+										compared</p>
+									</div>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="interleave" class="tsd-anchor"></a>
+					<h3>interleave</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">interleave&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L349">index.ts:349</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mix zero or more synchronous or asynchronous iterables by alternating between
+									them.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="map" class="tsd-anchor"></a>
+					<h3>map</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">map&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L388">index.ts:388</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transforms each value yielded by the supplied iterable by calling the
+									supplied and returning the result.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>R</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The function to call with each value yielded by the provided
+										iterable.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>arg: <span class="tsd-signature-type">T</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="merge" class="tsd-anchor"></a>
+					<h3>merge</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">merge&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>iterables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L408">index.ts:408</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an asynchronous iterable that concurrently emits all values yielded
+									from zero or more synchronous or asynchronous iterables.</p>
+								</div>
+								<p>When the iterables provided are synchronous, <code>merge</code> is equivalent to
+									<code>interleave</code>, but when one or more of the iterables are asynchronous, values
+								will be yielded from each iterable as soon as they are ready.</p>
+								<p>Inspired by <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-merge">RxJS&#39;s <code>merge</code></a>
+								operator.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>iterables: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -537,36 +1064,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L238">index.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L461">index.ts:461</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Yields all numbers (incrementing by <code>1</code> on each step) from 0 until <code>end</code> is
+									reached.</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>end: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a synchronous iterator that yields values between <code>start</code> and <code>end</code>,
-							counting up by <code>step</code>.</p>
-							<p>If <code>start</code> is not provided, a default of <code>0</code> is used.
-							If <code>step</code> is not provided, a default of <code>1</code> is used.</p>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L239">index.ts:239</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>start: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value that should serve as the upper bound of the range. It
+										will not be included in the returned range.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -574,19 +1088,65 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L240">index.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L471">index.ts:471</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Yields all numbers (incrementing by <code>1</code> on each step) from <code>start</code> until
+									<code>end</code> is reached.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>start: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value with which to begin the range.</p>
+									</div>
 								</li>
 								<li>
 									<h5>end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value that should serve as the upper bound of the range. It
+										will not be included in the returned range.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L482">index.ts:482</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Yields all numbers (incrementing by <code>step</code> after each yield) from <code>start</code>
+									until <code>end</code> is reached.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>start: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value with which to begin the range.</p>
+									</div>
+								</li>
+								<li>
+									<h5>end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value that should serve as the upper bound of the range. It
+										will not be included in the returned range.</p>
+									</div>
 								</li>
 								<li>
 									<h5>step: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Difference between each number in the sequence.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -597,14 +1157,14 @@
 					<a name="reduce" class="tsd-anchor"></a>
 					<h3>reduce</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">reduce&lt;T&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">reduce&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce&lt;T&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L283">index.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L518">index.ts:518</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -622,7 +1182,7 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -635,14 +1195,17 @@
 															<h5>currentValue: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -655,7 +1218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L287">index.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L522">index.ts:522</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -674,7 +1237,7 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -687,7 +1250,10 @@
 															<h5>currentValue: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
@@ -697,7 +1263,7 @@
 									<h5>initialValue: <span class="tsd-signature-type">R</span></h5>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -714,10 +1280,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L320">index.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L557">index.ts:557</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an infinite, lazy iterator that will yield the same value until
+									iteration is stopped.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -729,11 +1299,12 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>toRepeat: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value to yield repeatedly.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an infinite, lazy iterator, of which each value yielded will be the
-							provided argument.</p>
 						</li>
 					</ul>
 				</section>
@@ -741,16 +1312,20 @@
 					<a name="skip" class="tsd-anchor"></a>
 					<h3>skip</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">skip&lt;T&gt;<span class="tsd-signature-symbol">(</span>toSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">skip&lt;T&gt;<span class="tsd-signature-symbol">(</span>toSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L330">index.ts:330</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L569">index.ts:569</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an asynchronous iterable of all but the first <code>toSkip</code> items in the
+									provided iterable.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -762,31 +1337,37 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>toSkip: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of values from the underlying iterable to skip.</p>
+									</div>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that will yield all values yielded by the provided
-							<code>iterable</code> after skipping the first <code>toSkip</code> values.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="some" class="tsd-anchor"></a>
-					<h3>some</h3>
+					<a name="skipwhile" class="tsd-anchor"></a>
+					<h3>skip<wbr>While</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">some&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">skip<wbr>While&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L346">index.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L590">index.ts:590</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an asynchronous iterable of all but the first items in the provided
+										iterable for which the provided predicate returns true. Once the predicate
+									returns <code>false</code>, all subsequent values will be yielded.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -798,10 +1379,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -811,19 +1397,84 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="some" class="tsd-anchor"></a>
+					<h3>some</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">some&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L610">index.ts:610</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if any value yielded by the provided iterable satisfies the
+									provided predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>arg: <span class="tsd-signature-type">T</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p><code>true</code> if the provided <code>predicate</code> evaluates to <code>true</code> for any value
-							yielded by the provided <code>iterable</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -831,13 +1482,13 @@
 					<a name="sum" class="tsd-anchor"></a>
 					<h3>sum</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">sum<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">sum<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L362">index.ts:362</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L626">index.ts:626</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -845,7 +1496,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -857,16 +1508,20 @@
 					<a name="take" class="tsd-anchor"></a>
 					<h3>take</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">take&lt;T&gt;<span class="tsd-signature-symbol">(</span>limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">take&lt;T&gt;<span class="tsd-signature-symbol">(</span>limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L377">index.ts:377</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L643">index.ts:643</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a lazy sequence of the first <code>limit</code> items in the provided iterable,
+									or all items if there are fewer than <code>limit</code>.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -878,14 +1533,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>limit: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The maximum number of items to return.</p>
+									</div>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that will yield at most <code>limit</code> values from the provided
-							<code>iterable</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -893,16 +1549,20 @@
 					<a name="takewhile" class="tsd-anchor"></a>
 					<h3>take<wbr>While</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">take<wbr>While&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">take<wbr>While&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L395">index.ts:395</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L664">index.ts:664</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Yields values from the provided iterable while they satisfy the provided
+									predicate.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -914,10 +1574,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function that takes an element yielded by the provided
+											iterable and returns a boolean or a promise that resolves to
+										a boolean.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -927,20 +1592,20 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable that will yield values from the provided <code>iterable</code> so
-								long as <code>predicate</code> returns <code>true</code>. Once the <code>predicate</code> returns <code>false</code> for
-							any value, iteration will cease.</p>
 						</li>
 					</ul>
 				</section>
@@ -948,16 +1613,19 @@
 					<a name="tap" class="tsd-anchor"></a>
 					<h3>tap</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">tap&lt;T&gt;<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">tap&lt;T&gt;<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, iterable<span class="tsd-signature-symbol">: </span><a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L413">index.ts:413</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L687">index.ts:687</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Execute an action for each value yielded by the provided iterable.</p>
+								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -969,10 +1637,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>action: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A side-effect producing function that consumes values
+											yielded by the provided iterable and returns nothing or a
+										promise that resolves to <code>void</code>.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -982,20 +1655,22 @@
 															<h5>arg: <span class="tsd-signature-type">T</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>
+														<span class="tsd-signature-symbol"> | </span>
+														<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span>
+													</h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <a href="index.html#syncorasynciterable" class="tsd-signature-type">SyncOrAsyncIterable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>a iterable that will yield all values yielded by the provided
-								<code>iterable</code>. Additionally, the provided <code>action</code> will be invoked with each
-							value, allowing side effects to be performed.</p>
+							<code>iterable</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -1009,10 +1684,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/241cc86/src/index.ts#L430">index.ts:430</a></li>
+									<li>Defined in <a href="https://github.com/jeskew/async-seq/blob/54de415/src/index.ts#L707">index.ts:707</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an iterable of tuple pairs that matches the iteration signature of
+									an ES6 Map object.</p>
+								</div>
+								<p>If the two provided iterables are different lengths, the resulting iterable
+								will be the same length as the shorter of the two.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1027,16 +1708,18 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>keys: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The values to use as the first member of each pair.</p>
+									</div>
 								</li>
 								<li>
 									<h5>values: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The values to use as the second member of each pair.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an iterable of tuple pairs, where the elements of each pair are
-							corresponding elements of <code>keys</code> and <code>values</code>.</p>
-							<p>If the two provided iterables are different lengths, the resulting iterable
-							will be the same length as the shorter of the two.</p>
 						</li>
 					</ul>
 				</section>
@@ -1052,6 +1735,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/recursiveasynciterable.html" class="tsd-kind-icon">Recursive<wbr>Async<wbr>Iterable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/recursivesynciterable.html" class="tsd-kind-icon">Recursive<wbr>Sync<wbr>Iterable</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#elementoriterable" class="tsd-kind-icon">Element<wbr>OrIterable</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#recursiveiterable" class="tsd-kind-icon">Recursive<wbr>Iterable</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#syncorasynciterable" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterable</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#syncorasynciterator" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#syncorasynciteratorresult" class="tsd-kind-icon">Sync<wbr>OrAsync<wbr>Iterator<wbr>Result</a>
+					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="index.html#collect" class="tsd-kind-icon">collect</a>
 					</li>
@@ -1069,6 +1773,12 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="index.html#find" class="tsd-kind-icon">find</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#flatten" class="tsd-kind-icon">flatten</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="index.html#includes" class="tsd-kind-icon">includes</a>
@@ -1093,6 +1803,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="index.html#skip" class="tsd-kind-icon">skip</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#skipwhile" class="tsd-kind-icon">skip<wbr>While</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="index.html#some" class="tsd-kind-icon">some</a>
