@@ -16,6 +16,7 @@ import {
     reduce,
     repeat,
     skip,
+    skipWhile,
     some,
     sum,
     SyncOrAsyncIterable,
@@ -447,6 +448,35 @@ export class FunctionalTests {
         expected: Array<T>
     ) {
         Expect(await collect(skip(toSkip, iterable))).toEqual(expected);
+    }
+
+    @TestCase(
+        (arg: number) => arg < 10,
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9],
+        [10, 9]
+    )
+    @TestCase(
+        (arg: number) => Promise.resolve(arg < 10),
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9],
+        [10, 9]
+    )
+    @TestCase(
+        (arg: number) => arg < 10,
+        asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
+        [10, 9]
+    )
+    @TestCase(
+        (arg: number) => Promise.resolve(arg < 10),
+        asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
+        [10, 9]
+    )
+    @AsyncTest('Basic test cases for `skipWhile`')
+    async skipWhile<T>(
+        predicate: (arg: T) => boolean|Promise<boolean>,
+        iterable: SyncOrAsyncIterable<T>,
+        expected: Array<T>
+    ) {
+        Expect(await collect(skipWhile(predicate, iterable))).toEqual(expected);
     }
 
     @TestCase(
