@@ -1,6 +1,6 @@
 # Async sequence operators
 
-[![Apache 2 License](https://img.shields.io/github/license/jeskew/async-seq.svg?style=flat)](http://aws.amazon.com/apache-2-0/)
+[![Apache 2 License](https://img.shields.io/github/license/jeskew/async-seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/jeskew/async-seq.svg?branch=master)](https://travis-ci.org/jeskew/async-seq)
 
 This package provides a number of functions for filtering, reducing, combining,
