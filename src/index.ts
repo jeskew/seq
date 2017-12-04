@@ -7,12 +7,53 @@ if (Symbol && !Symbol.asyncIterator) {
 }
 
 /**
- * @returns a promise resolved with an array of the values yielded by the
- * provided `iterable`.
+ * A synchronous or asynchronous iterable.
  */
-export async function collect<T>(
-    iterable: AsyncIterable<T>|Iterable<T>
-) {
+export type SyncOrAsyncIterable<T> = AsyncIterable<T>|Iterable<T>;
+
+/**
+ * A synchronous or asynchronous iterator.
+ */
+export type SyncOrAsyncIterator<T> = AsyncIterator<T>|Iterator<T>;
+
+/**
+ * The result of a synchronous or asynchronous iterator.
+ */
+export type SyncOrAsyncIteratorResult<T>
+    = IteratorResult<T>|Promise<IteratorResult<T>>;
+
+/**
+ * A synchronous iterable whose elements are either of type T or are themselves
+ * synchronous or asynchronous iterables of an arbitrary depth.
+ */
+export interface RecursiveSyncIterable<T> extends
+    Iterable<T|RecursiveIterable<T>>
+{}
+
+/**
+ * An asynchronous iterable whose elements are either of type T or are
+ * themselves synchronous or asynchronous iterables of an arbitrary depth.
+ */
+export interface RecursiveAsyncIterable<T> extends
+    AsyncIterable<T|RecursiveIterable<T>>
+{}
+
+/**
+ * A synchronous or asynchronous iterable whose elements are either of type T or
+ * are themselves synchronous or asynchronous iterables of an arbitrary depth.
+ */
+export type RecursiveIterable<T> = RecursiveSyncIterable<T>|RecursiveAsyncIterable<T>;
+
+/**
+ * An element yielded by an iterable that may or may not be iterable itself.
+ */
+export type ElementOrIterable<T> = T|SyncOrAsyncIterable<T>;
+
+/**
+ * Collects the values yielded by a synchronous or asynchronous iterable into an
+ * array.
+ */
+export async function collect<T>(iterable: SyncOrAsyncIterable<T>) {
     const collected: Array<T> = [];
     for await (const item of iterable) {
         collected.push(item);
@@ -22,31 +63,23 @@ export async function collect<T>(
 }
 
 /**
- * @returns a single async iterable combining any number of synchronous or
- * asynchronous iterables. The resulting iterable will yield all values from the
- * first iterable provided, followed by all values yielded by the next iterable,
- * etc., for each iterable provided as an argument.
+ * Combines zero or more synchronous or asynchronous iterables into a single
+ * async iterable. The resulting iterable will yield all values from the first
+ * iterable provided, followed by all values yielded by the next iterable, etc.,
+ * for each iterable provided as an argument.
  */
-export async function *concat<T>(
-    ...iterables: Array<AsyncIterable<T>|Iterable<T>>
-) {
-    for (const iterable of iterables) {
-        for await (const element of iterable) {
-            yield element;
-        }
-    }
+export function concat<T>(...iterables: Array<SyncOrAsyncIterable<T>>) {
+    return flatten(iterables);
 }
 
 /**
- * @returns an iterable that yields values yielded by the provided `iterable`
- * with duplicates removed. Distinctness is evaluated by maintaining a set
- * of previously yielded values, i.e., it is evaluated via the [`SameValueZero`
- * algorithm](http://www.ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * Removes duplicates from a synchronous or asynchronous iterable.
+ *
+ * Distinctness is evaluated by maintaining a set of previously yielded values,
+ * i.e., it is evaluated via the [`SameValueZero` algorithm](http://www.ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
  * described in the ECMAScript 2015 specification.
  */
-export async function *distinct<T>(
-    iterable: AsyncIterable<T>|Iterable<T>
-) {
+export async function *distinct<T>(iterable: SyncOrAsyncIterable<T>) {
     const seen = new Set<T>();
     for await (const element of iterable) {
         if (!seen.has(element)) {
@@ -57,15 +90,19 @@ export async function *distinct<T>(
 }
 
 /**
- * @returns when the provided predicate returns `true` for each item yielded by
- * the provided iterable.
+ * Determines whether all items yielded by an iterable satisfy the supplied
+ * predicate.
+ *
+ * @param predicate A function that takes an element yielded by the provided
+ *                  iterable and returns a boolean or a promise that resolves to
+ *                  a boolean.
  */
 export async function every<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>|Iterable<T>
+    predicate: (arg: T) => boolean|Promise<boolean>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        if (!predicate(element)) {
+        if (!(await predicate(element))) {
             return false;
         }
     }
@@ -74,30 +111,38 @@ export async function every<T>(
 }
 
 /**
- * @returns an asynchronous iterator that yields each value yielded by the
- *  provided iterable for which the provided predicate returns `true`.
+ * Removes values that fail to satisfy the supplied predicate from the supplied
+ * iterable.
+ *
+ * @param predicate A function that takes an element yielded by the provided
+ *                  iterable and returns a boolean or a promise that resolves to
+ *                  a boolean.
  */
 export async function *filter<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>|Iterable<T>
+    predicate: (arg: T) => boolean|Promise<boolean>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        if (predicate(element)) {
+        if (await predicate(element)) {
             yield element;
         }
     }
 }
 
 /**
- * @returns the first value yielded by the provided iterable for which the
- * provided predicate returns `true`.
+ * Locates the first value yielded by the supplied iterable that satisfies the
+ * supplied predicate.
+ *
+ * @param predicate A function that takes an element yielded by the provided
+ *                  iterable and returns a boolean or a promise that resolves to
+ *                  a boolean.
  */
 export async function find<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>|Iterable<T>
+    predicate: (arg: T) => boolean|Promise<boolean>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        if (predicate(element)) {
+        if (await predicate(element)) {
             return element;
         }
     }
@@ -106,12 +151,187 @@ export async function find<T>(
 }
 
 /**
- * @returns `true` if the provided `searchElement` is yielded by the provided
- * `iterable`.
+ * Maps each element yielded by the supplied iterable and flattens the result.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param f         The function to apply to every value yielded by the supplied
+ *                  iterable.
+ */
+export function flatMap<T, R>(
+    f: (arg: T) => R|Promise<R>|SyncOrAsyncIterable<R>,
+    iterable: SyncOrAsyncIterable<T>
+): AsyncIterableIterator<R> {
+    return flatten(map<T, R|SyncOrAsyncIterable<R>>(f, iterable));
+}
+
+/**
+ * Flattens an iterable that yields elements of type T or
+ * {SyncOrAsyncIterable}<T> into an interable that yields elements of type T.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param iterable The iterable to flatten
+ */
+export function flatten<T>(
+    iterable: SyncOrAsyncIterable<ElementOrIterable<T>>
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to `depth` times.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable. Specify `Infinity` to flatten the
+ *                  iterable until it contains only non-iterable elements.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: number,
+    iterable: RecursiveIterable<T>
+): AsyncIterableIterator<T|RecursiveIterable<T>>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 0,
+    iterable: SyncOrAsyncIterable<T>
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to one time.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 1,
+    iterable: SyncOrAsyncIterable<ElementOrIterable<T>>
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to two times.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 2,
+    iterable: SyncOrAsyncIterable<ElementOrIterable<ElementOrIterable<T>>>
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to three times.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 3,
+    iterable: SyncOrAsyncIterable<
+        ElementOrIterable<
+            ElementOrIterable<
+                ElementOrIterable<T>
+            >
+        >
+    >
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to four times.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 4,
+    iterable: SyncOrAsyncIterable<
+        ElementOrIterable<
+            ElementOrIterable<
+                ElementOrIterable<
+                    ElementOrIterable<T>
+                >
+            >
+        >
+    >
+): AsyncIterableIterator<T>;
+
+/**
+ * Returns an asynchronous iterable that yields all elements yielded by the
+ * provided iterator, flattened up to five times.
+ *
+ * This method will not flatten yielded strings into characters.
+ *
+ * @param depth     The number of times to recursively flatten elements that are
+ *                  themselves iterable.
+ * @param iterable  The iterable to flatten.
+ */
+export function flatten<T>(
+    depth: 5,
+    iterable: SyncOrAsyncIterable<
+        ElementOrIterable<
+            ElementOrIterable<
+                ElementOrIterable<
+                    ElementOrIterable<
+                        ElementOrIterable<T>
+                    >
+                >
+            >
+        >
+    >
+): AsyncIterableIterator<T>;
+
+export function flatten<T>(
+    depthOrIterable: number|RecursiveIterable<T>,
+    iterable?: RecursiveIterable<T>
+) {
+    let depth: number;
+    if (typeof depthOrIterable === 'number') {
+        depth = depthOrIterable;
+    } else {
+        depth = 1;
+        iterable = depthOrIterable;
+    }
+
+    return flattenIntoIterable(depth, iterable as RecursiveIterable<T>);
+}
+
+/**
+ * Determines if any of the values yielded by the supplied iterator are equal to
+ * (`===`) a particular value.
+ *
+ * @param searchElement The value against which all yielded values will be
+ *                      compared
  */
 export async function includes<T>(
     searchElement: T,
-    iterable: AsyncIterable<T>|Iterable<T>
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
         if (element === searchElement) {
@@ -123,21 +343,21 @@ export async function includes<T>(
 }
 
 /**
- * @returns an iterable that yields a value from each iterable provided as an
- * argument.
+ * Mix zero or more synchronous or asynchronous iterables by alternating between
+ * them.
  */
 export async function *interleave<T>(
-    ...iterables: Array<AsyncIterable<T>|Iterable<T>>
+    ...iterables: Array<SyncOrAsyncIterable<T>>
 ) {
     const cursors = new Map<
-        Iterator<T>|AsyncIterator<T>,
-        IteratorResult<T>|Promise<IteratorResult<T>>
+        SyncOrAsyncIterator<T>,
+        SyncOrAsyncIteratorResult<T>
     >(function *() {
         for (const iterable of iterables) {
             const iterator = iteratorFromIterable(iterable);
             yield [iterator, iterator.next()] as [
-                Iterator<T>|AsyncIterator<T>,
-                IteratorResult<T>|Promise<IteratorResult<T>>
+                SyncOrAsyncIterator<T>,
+                SyncOrAsyncIteratorResult<T>
             ];
         }
     }());
@@ -159,21 +379,24 @@ export async function *interleave<T>(
 }
 
 /**
- * @returns an iterable that yields the result of apply the provided `f`
- * function to each value yielded by the provided `iterable`.
+ * Transforms each value yielded by the supplied iterable by calling the
+ * supplied and returning the result.
+ *
+ * @param f The function to call with each value yielded by the provided
+ *          iterable.
  */
 export async function *map<T, R>(
-    f: (arg: T) => R,
-    iterable: AsyncIterable<T>|Iterable<T>
-) {
+    f: (arg: T) => R|Promise<R>,
+    iterable: SyncOrAsyncIterable<T>
+): AsyncIterableIterator<R> {
     for await (const element of iterable) {
-        yield f(element);
+        yield await f(element);
     }
 }
 
 /**
- * @returns an iterable that yields values from all provided iterables as they
- * become available.
+ * Creates an asynchronous iterable that concurrently emits all values yielded
+ * from zero or more synchronous or asynchronous iterables.
  *
  * When the iterables provided are synchronous, `merge` is equivalent to
  * `interleave`, but when one or more of the iterables are asynchronous, values
@@ -183,7 +406,7 @@ export async function *map<T, R>(
  * operator.
  */
 export async function *merge<T>(
-    ...iterables: Array<Iterable<T>|AsyncIterable<T>>
+    ...iterables: Array<SyncOrAsyncIterable<T>>
 ) {
     const pendingResults: Array<PendingResult<T>> = [];
     for (const iterable of iterables) {
@@ -210,16 +433,16 @@ export async function *merge<T>(
 }
 
 interface PendingResult<T> {
-    iterator: Iterator<T>|AsyncIterator<T>;
+    iterator: SyncOrAsyncIterator<T>;
     result: Promise<{
-        iterator: Iterator<T>|AsyncIterator<T>;
+        iterator: SyncOrAsyncIterator<T>;
         result: IteratorResult<T>
     }>;
 }
 
 function refillPending<T>(
     pending: Array<PendingResult<T>>,
-    iterator: Iterator<T>|AsyncIterator<T>
+    iterator: SyncOrAsyncIterator<T>
 ): void {
     const result = Promise.resolve(iterator.next()).then(resolved => ({
         iterator,
@@ -229,19 +452,39 @@ function refillPending<T>(
 }
 
 /**
- * @returns a synchronous iterator that yields values between `start` and `end`,
- * counting up by `step`.
+ * Yields all numbers (incrementing by `1` on each step) from 0 until `end` is
+ * reached.
  *
- * If `start` is not provided, a default of `0` is used.
- * If `step` is not provided, a default of `1` is used.
+ * @param end   The value that should serve as the upper bound of the range. It
+ *              will not be included in the returned range.
  */
 export function range(end: number): IterableIterator<number>;
+
+/**
+ * Yields all numbers (incrementing by `1` on each step) from `start` until
+ * `end` is reached.
+ *
+ * @param start The value with which to begin the range.
+ * @param end   The value that should serve as the upper bound of the range. It
+ *              will not be included in the returned range.
+ */
 export function range(start: number, end: number): IterableIterator<number>;
+
+/**
+ * Yields all numbers (incrementing by `step` after each yield) from `start`
+ * until `end` is reached.
+ *
+ * @param start The value with which to begin the range.
+ * @param end   The value that should serve as the upper bound of the range. It
+ *              will not be included in the returned range.
+ * @param step  Difference between each number in the sequence.
+ */
 export function range(
     start: number,
     end: number,
     step: number
 ): IterableIterator<number>;
+
 export function *range(
     startOrEnd: number,
     end?: number,
@@ -264,14 +507,6 @@ export function *range(
     }
 }
 
-function gt(a: number, b: number): boolean {
-    return a > b;
-}
-
-function lt(a: number, b: number): boolean {
-    return a < b;
-}
-
 /**
  * @returns a promise that will resolve with the result of applying the provided
  * `reducer` function against an accumulator and each value yielded by the
@@ -281,29 +516,29 @@ function lt(a: number, b: number): boolean {
  * will be used in its place.
  */
 export async function reduce<T>(
-    reducer: (accumulator: T, currentValue: T) => T,
-    iterable: Iterable<T>|AsyncIterable<T>
+    reducer: (accumulator: T, currentValue: T) => T|Promise<T>,
+    iterable: SyncOrAsyncIterable<T>
 ): Promise<T>;
 export async function reduce<T, R>(
-    reducer: (accumulator: R, currentValue: T) => R,
+    reducer: (accumulator: R, currentValue: T) => R|Promise<R>,
     initialValue: R,
-    iterable: Iterable<T>|AsyncIterable<T>
+    iterable: SyncOrAsyncIterable<T>
 ): Promise<R>;
 export async function reduce<T, R>(
-    reducer: (accumulator: R, currentValue: T) => R,
-    iterableOrInitialValue: R|Iterable<T>|AsyncIterable<T>,
-    iterable?: Iterable<T>|AsyncIterable<T>
+    reducer: (accumulator: R, currentValue: T) => R|Promise<R>,
+    iterableOrInitialValue: R|SyncOrAsyncIterable<T>,
+    iterable?: SyncOrAsyncIterable<T>
 ) {
     let value: R = iterableOrInitialValue as R;
     let initialized = true;
     if (!iterable) {
-        iterable = iterableOrInitialValue as Iterable<T>|AsyncIterable<T>;
+        iterable = iterableOrInitialValue as SyncOrAsyncIterable<T>;
         initialized = false;
     }
 
     for await (const element of iterable) {
         if (initialized) {
-            value = reducer(value, element);
+            value = await reducer(value, element);
         } else {
             value = <R><any>element;
             initialized = true;
@@ -314,8 +549,10 @@ export async function reduce<T, R>(
 }
 
 /**
- * @returns an infinite, lazy iterator, of which each value yielded will be the
- * provided argument.
+ * Creates an infinite, lazy iterator that will yield the same value until
+ * iteration is stopped.
+ *
+ * @param toRepeat  The value to yield repeatedly.
  */
 export function *repeat<T>(toRepeat: T) {
     while (true) {
@@ -324,12 +561,14 @@ export function *repeat<T>(toRepeat: T) {
 }
 
 /**
- * @returns an iterable that will yield all values yielded by the provided
- * `iterable` after skipping the first `toSkip` values.
+ * Creates an asynchronous iterable of all but the first `toSkip` items in the
+ * provided iterable.
+ *
+ * @param toSkip    The number of values from the underlying iterable to skip.
  */
 export async function *skip<T>(
     toSkip: number,
-    iterable: AsyncIterable<T>|Iterable<T>
+    iterable: SyncOrAsyncIterable<T>
 ) {
     let index = 0;
     for await (const element of iterable) {
@@ -340,15 +579,19 @@ export async function *skip<T>(
 }
 
 /**
- * @returns `true` if the provided `predicate` evaluates to `true` for any value
- * yielded by the provided `iterable`.
+ * Determines if any value yielded by the provided iterable satisfies the
+ * provided predicate.
+ *
+ * @param predicate A function that takes an element yielded by the provided
+ *                  iterable and returns a boolean or a promise that resolves to
+ *                  a boolean.
  */
 export async function some<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>|Iterable<T>
+    predicate: (arg: T) => boolean|Promise<boolean>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        if (predicate(element)) {
+        if (await predicate(element)) {
             return true;
         }
     }
@@ -360,7 +603,7 @@ export async function some<T>(
  * @returns the sum of all values yielded by the provided `iterable`.
  */
 export async function sum(
-    iterable: AsyncIterable<number>|Iterable<number>
+    iterable: SyncOrAsyncIterable<number>
 ): Promise<number> {
     let sum = 0;
     for await (const element of iterable) {
@@ -371,12 +614,14 @@ export async function sum(
 }
 
 /**
- * @returns an iterable that will yield at most `limit` values from the provided
- * `iterable`.
+ * Returns a lazy sequence of the first `limit` items in the provided iterable,
+ * or all items if there are fewer than `limit`.
+ *
+ * @param limit The maximum number of items to return.
  */
 export async function *take<T>(
     limit: number,
-    iterable: AsyncIterable<T>|Iterable<T>
+    iterable: SyncOrAsyncIterable<T>
 ) {
     if (limit <= 0) return;
 
@@ -388,16 +633,19 @@ export async function *take<T>(
 }
 
 /**
- * @returns an iterable that will yield values from the provided `iterable` so
- * long as `predicate` returns `true`. Once the `predicate` returns `false` for
- * any value, iteration will cease.
+ * Yields values from the provided iterable while they satisfy the provided
+ * predicate.
+ *
+ * @param predicate A function that takes an element yielded by the provided
+ *                  iterable and returns a boolean or a promise that resolves to
+ *                  a boolean.
  */
 export async function *takeWhile<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>|Iterable<T>
+    predicate: (arg: T) => boolean|Promise<boolean>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        if (predicate(element)) {
+        if (await predicate(element)) {
             yield element;
         } else {
             break;
@@ -406,26 +654,34 @@ export async function *takeWhile<T>(
 }
 
 /**
+ * Execute an action for each value yielded by the provided iterable.
+ *
+ * @param action    A side-effect producing function that consumes values
+ *                  yielded by the provided iterable and returns nothing or a
+ *                  promise that resolves to `void`.
+ *
  * @returns a iterable that will yield all values yielded by the provided
- * `iterable`. Additionally, the provided `action` will be invoked with each
- * value, allowing side effects to be performed.
+ * `iterable`.
  */
 export async function *tap<T>(
-    action: (arg: T) => void,
-    iterable: AsyncIterable<T>|Iterable<T>
+    action: (arg: T) => void|Promise<void>,
+    iterable: SyncOrAsyncIterable<T>
 ) {
     for await (const element of iterable) {
-        action(element);
+        await action(element);
         yield element;
     }
 }
 
 /**
- * @returns an iterable of tuple pairs, where the elements of each pair are
- * corresponding elements of `keys` and `values`.
+ * Creates an iterable of tuple pairs that matches the iteration signature of
+ * an ES6 Map object.
  *
  * If the two provided iterables are different lengths, the resulting iterable
  * will be the same length as the shorter of the two.
+ *
+ * @param keys      The values to use as the first member of each pair.
+ * @param values    The values to use as the second member of each pair.
  */
 export async function *zip<K, V>(
     keys: AsyncIterable<K>|Iterable<K>,
@@ -446,12 +702,44 @@ export async function *zip<K, V>(
     }
 }
 
+async function *flattenIntoIterable<T>(
+    depth: number,
+    iterable: RecursiveIterable<T>
+): AsyncIterableIterator<T|RecursiveIterable<T>> {
+    for await (const element of iterable) {
+        if (typeof element !== 'string' && isIterable(element) && depth > 0) {
+            yield* flattenIntoIterable(depth - 1, element);
+        } else {
+            yield element;
+        }
+    }
+}
+
+function gt(a: number, b: number): boolean {
+    return a > b;
+}
+function isAsyncIterable<T>(arg: any): arg is AsyncIterable<T> {
+    return Boolean(arg) && typeof arg[Symbol.asyncIterator] === 'function';
+}
+
+function isIterable<T>(arg: any): arg is SyncOrAsyncIterable<T> {
+    return isAsyncIterable(arg) || isSyncIterable(arg);
+}
+
+function isSyncIterable<T>(arg: any): arg is Iterable<T> {
+    return Boolean(arg) && typeof arg[Symbol.iterator] === 'function';
+}
+
 function iteratorFromIterable<T>(
-    iterable?: Iterable<T>|AsyncIterable<T>
-): Iterator<T>|AsyncIterator<T> {
-    if (typeof (iterable as AsyncIterable<T>)[Symbol.asyncIterator] === 'function') {
-        return (iterable as AsyncIterable<T>)[Symbol.asyncIterator]();
+    iterable?: SyncOrAsyncIterable<T>
+): SyncOrAsyncIterator<T> {
+    if (isAsyncIterable(iterable)) {
+        return iterable[Symbol.asyncIterator]();
     }
 
     return (iterable as Iterable<T>)[Symbol.iterator]();
+}
+
+function lt(a: number, b: number): boolean {
+    return a < b;
 }

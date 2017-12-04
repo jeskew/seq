@@ -5,16 +5,20 @@ import {
     every,
     filter,
     find,
+    flatMap,
+    flatten,
     includes,
     interleave,
     map,
     merge,
     range,
+    RecursiveIterable,
     reduce,
     repeat,
     skip,
     some,
     sum,
+    SyncOrAsyncIterable,
     take,
     takeWhile,
     tap,
@@ -41,7 +45,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `collect`')
     async collect<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         expected: Array<T>
     ) {
         Expect(await collect(iterable)).toEqual(expected);
@@ -58,7 +62,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `concat`')
     async concat<T>(
-        iterables: Array<Iterable<T>|AsyncIterable<T>>,
+        iterables: Array<SyncOrAsyncIterable<T>>,
         expected: Array<T>
     ) {
         Expect(await collect(concat.apply(null, iterables))).toEqual(expected);
@@ -74,7 +78,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `distinct`')
     async distinct<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         expected: Array<T>
     ) {
         Expect(await collect(distinct(iterable))).toEqual(expected);
@@ -102,7 +106,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `every`')
     async every<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         predicate: (arg: T) => boolean,
         expected: boolean
     ) {
@@ -131,7 +135,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `filter`')
     async filter<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         predicate: (arg: T) => boolean,
         expected: Array<T>
     ) {
@@ -147,10 +151,14 @@ export class FunctionalTests {
         range(5),
         (num: number) => num > 100
     )
+    @TestCase(
+        range(5),
+        (num: number) => Promise.resolve(num > 100)
+    )
     @AsyncTest('Basic test cases for `find`')
     async find<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
-        predicate: (arg: T) => boolean,
+        iterable: SyncOrAsyncIterable<T>,
+        predicate: (arg: T) => boolean|Promise<boolean>,
         expected?: T
     ) {
         if (expected === undefined) {
@@ -165,6 +173,62 @@ export class FunctionalTests {
         } else {
             Expect(await find(predicate, iterable)).toEqual(expected);
         }
+    }
+
+    @TestCase(
+        range(5),
+        (num: number) => num % 2 === 0 ? range(num + 1) : asyncify(range(num + 1)),
+        [0, 0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 4]
+    )
+    @TestCase(
+        range(5),
+        (num: number) => num % 2 === 0 ? range(num + 1) : num,
+        [0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 4]
+    )
+    @TestCase(
+        range(5),
+        (num: number) => num % 2 === 0 ? num : asyncify(range(num + 1)),
+        [0, 0, 1, 2, 0, 1, 2, 3, 4]
+    )
+    @AsyncTest('Basic test cases for `flatMap`')
+    async flatMap<T, R>(
+        iterable: SyncOrAsyncIterable<T>,
+        predicate: (arg: T) => R|Promise<R>|SyncOrAsyncIterable<R>,
+        expected: Array<R>
+    ) {
+        Expect(await collect(flatMap(predicate, iterable))).toEqual(expected);
+    }
+
+    @TestCase(
+        [0, 1, 2, 3],
+        [[0], [1, 2], 3]
+    )
+    @TestCase(
+        [[0], [1, 2], 3],
+        [[0], [1, 2], 3],
+        0
+    )
+    @TestCase(
+        [[0], 1, 2, 3],
+        [[[[[[[0]]]]]], [1, 2], 3],
+        5
+    )
+    @TestCase(
+        ['an', 'iterable', 'of', 'strings'],
+        [[[[[[[[[[['an']]]]]]]]]], ['iterable', 'of'], 'strings'],
+        Infinity
+    )
+    @AsyncTest('Basic test cases for `flatten`')
+    async flatten<T>(
+        expected: Array<T>,
+        iterable: RecursiveIterable<T>,
+        depth?: number
+    ) {
+        const flattened = depth !== undefined
+            ? flatten(depth, iterable)
+            : flatten(iterable);
+
+        Expect(await collect(flattened)).toEqual(expected);
     }
 
     @TestCase(
@@ -189,7 +253,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `every`')
     async includes<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         searchElement: T,
         expected: boolean
     ) {
@@ -217,7 +281,7 @@ export class FunctionalTests {
     @AsyncTest('Basic test cases for `interleave`')
     async interleave<T>(
         expected: Array<T>,
-        ...iterables: Array<Iterable<T>|AsyncIterable<T>>
+        ...iterables: Array<SyncOrAsyncIterable<T>>
     ) {
         Expect(await collect(interleave(...iterables))).toEqual(expected);
     }
@@ -232,10 +296,15 @@ export class FunctionalTests {
         (x: number) => x * x,
         [0, 1, 4, 9, 16]
     )
+    @TestCase(
+        range(5),
+        (x: number) => Promise.resolve(x * x),
+        [0, 1, 4, 9, 16]
+    )
     @AsyncTest('Basic test cases for `map`')
     async map<T, R>(
-        iterable: Iterable<T>|AsyncIterable<T>,
-        f: (arg: T) => R,
+        iterable: SyncOrAsyncIterable<T>,
+        f: (arg: T) => R|Promise<R>,
         expected: Array<R>
     ) {
         Expect(await collect(map(f, iterable))).toEqual(expected);
@@ -281,7 +350,7 @@ export class FunctionalTests {
     @AsyncTest('Basic test cases for `merge`')
     async merge<T>(
         expected: Array<T>,
-        ...iterables: Array<Iterable<T>|AsyncIterable<T>>
+        ...iterables: Array<SyncOrAsyncIterable<T>>
     ) {
         Expect(await collect(merge(...iterables))).toEqual(expected);
     }
@@ -326,7 +395,7 @@ export class FunctionalTests {
     async reduceWithInitialValue<T, R>(
         reducer: (accumulator: R, currentValue: T) => R,
         initialValue: R,
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         expected: R
     ) {
         Expect(await reduce(reducer, initialValue, iterable)).toEqual(expected);
@@ -345,7 +414,7 @@ export class FunctionalTests {
     @AsyncTest('Calling reduce with an initial value')
     async reduceWithoutInitialValue<T>(
         reducer: (accumulator: T, currentValue: T) => T,
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         expected: T
     ) {
         Expect(await reduce(reducer, iterable)).toEqual(expected);
@@ -374,7 +443,7 @@ export class FunctionalTests {
     @AsyncTest('Basic test cases for `skip`')
     async skip<T>(
         toSkip: number,
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         expected: Array<T>
     ) {
         Expect(await collect(skip(toSkip, iterable))).toEqual(expected);
@@ -402,7 +471,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `some`')
     async some<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         predicate: (arg: T) => boolean,
         expected: boolean
     ) {
@@ -433,7 +502,7 @@ export class FunctionalTests {
     @AsyncTest('Basic test cases for `take`')
     async take<T>(
         limit: number,
-        iterable: Iterable<T>|AsyncIterable<T>
+        iterable: SyncOrAsyncIterable<T>
     ) {
         Expect((await collect(take(limit, iterable))).length)
             .toBeLessThan(limit + 1);
@@ -451,7 +520,7 @@ export class FunctionalTests {
     )
     @AsyncTest('Basic test cases for `takeWhile`')
     async takeWhile<T>(
-        iterable: Iterable<T>|AsyncIterable<T>,
+        iterable: SyncOrAsyncIterable<T>,
         predicate: (arg: T) => boolean,
         expected: Array<T>
     ) {
