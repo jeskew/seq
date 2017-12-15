@@ -1,5 +1,6 @@
 # Async sequence operators
 
+[![npm version](https://badge.fury.io/js/%40jsq%2Fasync-seq.svg)](https://badge.fury.io/js/%40jsq%2Fasync-seq)
 [![Apache 2 License](https://img.shields.io/github/license/jeskew/async-seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/jeskew/async-seq.svg?branch=master)](https://travis-ci.org/jeskew/async-seq)
 
