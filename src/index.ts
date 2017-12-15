@@ -159,7 +159,7 @@ export async function find<T>(
  *                  iterable.
  */
 export function flatMap<T, R>(
-    f: (arg: T) => R|Promise<R>|SyncOrAsyncIterable<R>,
+    f: (arg: T) => R|SyncOrAsyncIterable<R>,
     iterable: SyncOrAsyncIterable<T>
 ): AsyncIterableIterator<R> {
     return flatten(map<T, R|SyncOrAsyncIterable<R>>(f, iterable));
@@ -386,11 +386,11 @@ export async function *interleave<T>(
  *          iterable.
  */
 export async function *map<T, R>(
-    f: (arg: T) => R|Promise<R>,
+    f: (arg: T) => R,
     iterable: SyncOrAsyncIterable<T>
 ): AsyncIterableIterator<R> {
     for await (const element of iterable) {
-        yield await f(element);
+        yield f(element);
     }
 }
 
