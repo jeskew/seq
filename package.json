@@ -4,6 +4,9 @@
   "description": "Lazy sequence operators for JavaScript backed by async iterators.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "build": "tsc",
     "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
@@ -33,6 +36,9 @@
     "standard-version": "^4.2.0",
     "typedoc": "^0.9.0",
     "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "tslib": "^1.8.1"
   },
   "nyc": {
     "exclude": [

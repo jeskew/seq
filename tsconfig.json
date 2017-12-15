@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "lib": [
       "dom",
       "es5",
-      "es2015.collection",
-      "es2015.iterable",
-      "es2015.promise",
-      "es2015.symbol.wellknown",
+      "es2015",
       "esnext.asynciterable"
     ],
     "declaration": true,
@@ -16,6 +13,7 @@
     "outDir": "./build",
     "rootDir": "./src",
     "downlevelIteration": true,
+    "importHelpers": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
