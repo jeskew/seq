@@ -194,7 +194,7 @@ export class FunctionalTests {
     @AsyncTest('Basic test cases for `flatMap`')
     async flatMap<T, R>(
         iterable: SyncOrAsyncIterable<T>,
-        predicate: (arg: T) => R|Promise<R>|SyncOrAsyncIterable<R>,
+        predicate: (arg: T) => R|SyncOrAsyncIterable<R>,
         expected: Array<R>
     ) {
         Expect(await collect(flatMap(predicate, iterable))).toEqual(expected);
