@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/jeskew/async-seq/compare/v0.2.0...v0.3.0) (2017-12-15)
+
+
+### Features
+
+* **map:** Do not automatically wait on the result of a mapping function ([fe07d76](https://github.com/jeskew/async-seq/commit/fe07d76))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/jeskew/async-seq/compare/v0.1.2...v0.2.0) (2017-12-04)
 
