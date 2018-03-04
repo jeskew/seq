@@ -3,12 +3,13 @@
   "version": "0.3.0",
   "description": "Lazy sequence operators for JavaScript backed by async iterators.",
   "main": "build/index.js",
+  "module": "build/index.mjs",
   "types": "build/index.d.ts",
   "engines": {
     "node": ">=6"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc -p tsconfig.esm.json && node scripts/buildMjsModule.js",
     "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
     "docs": "typedoc src",
     "prepublishOnly": "npm run build",

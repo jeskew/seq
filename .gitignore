@@ -1,5 +1,6 @@
 .nyc_output/
 build/
+esm/
 coverage/
 node_modules/
 package/
