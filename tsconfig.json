@@ -3,9 +3,9 @@
     "target": "es2015",
     "module": "commonjs",
     "lib": [
-      "dom",
       "es5",
-      "es2015",
+      "es2015.collection",
+      "es2015.promise",
       "esnext.asynciterable"
     ],
     "declaration": true,
