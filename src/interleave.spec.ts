@@ -1,9 +1,9 @@
-import { collect, SyncOrAsyncIterable, range, interleave } from '.';
+import { collect, range, interleave } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('interleave', async t => {
-    const testCases: Array<[Array<number>, Array<SyncOrAsyncIterable<number>>]> = [
+    const testCases: Array<[Array<number>, Array<Iterable<number>|AsyncIterable<number>>]> = [
         [
             [0, 1, 2, 3, 4],
             [range(5)]

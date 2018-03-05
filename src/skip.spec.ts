@@ -1,11 +1,11 @@
-import { collect, range, SyncOrAsyncIterable, skip } from '.';
+import { collect, range, skip } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('skip', async t => {
     const testCases: Array<[
         number,
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         Array<number>
     ]> = [
         [

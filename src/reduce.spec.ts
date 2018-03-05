@@ -1,4 +1,4 @@
-import { range, SyncOrAsyncIterable, reduce } from '.';
+import { range, reduce } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
@@ -6,7 +6,7 @@ test('reduce with an initial value', async t => {
     const testCases: Array<[
         (carry: string, value: number) => string,
         string,
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         string
     ]> = [
         [
@@ -36,7 +36,7 @@ test('reduce with an initial value', async t => {
 test('reduce without an initial value', async t => {
     const testCases: Array<[
         (carry: number, value: number) => number,
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         number
     ]> = [
         [

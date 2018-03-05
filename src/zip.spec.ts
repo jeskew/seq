@@ -1,11 +1,11 @@
-import { collect, SyncOrAsyncIterable, range, zip } from '.';
+import { collect, range, zip } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('zip', async t => {
     const testCases: Array<[
-        SyncOrAsyncIterable<number>,
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         Array<[number, number]>
     ]> = [
         [
