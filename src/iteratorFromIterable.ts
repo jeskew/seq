@@ -1,6 +1,4 @@
-function isAsyncIterable<T>(arg: any): arg is AsyncIterable<T> {
-    return Boolean(arg) && typeof arg[Symbol.asyncIterator] === 'function';
-}
+import { isAsyncIterable } from './isIterable';
 
 export function iteratorFromIterable<T>(
     iterable?: Iterable<T>|AsyncIterable<T>

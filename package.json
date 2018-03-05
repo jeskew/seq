@@ -2,20 +2,20 @@
   "name": "@jsq/async-seq",
   "version": "0.3.0",
   "description": "Lazy sequence operators for JavaScript backed by async iterators.",
-  "main": "build/index.js",
-  "module": "build/index.mjs",
-  "types": "build/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
   "engines": {
     "node": ">=4"
   },
   "scripts": {
-    "build": "tsc && tsc -p tsconfig.esm.json && node scripts/buildMjsModule.js",
+    "build": "tsc && rollup -c ./rollup.config.js",
     "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
     "docs": "typedoc src",
     "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
     "release": "standard-version",
-    "test": "tape build/*.spec.js"
+    "test": "tape lib/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,8 @@
   "devDependencies": {
     "@types/tape": "^4.2.31",
     "nyc": "^11.3.0",
+    "rollup": "^0.56.4",
+    "rollup-plugin-typescript": "^0.8.1",
     "standard-version": "^4.2.0",
     "tape": "^4.9.0",
     "typedoc": "^0.10.0",
