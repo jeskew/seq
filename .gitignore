@@ -6,5 +6,6 @@ node_modules/
 package/
 
 yarn.lock
+package-lock.json
 *.tgz
 *.log

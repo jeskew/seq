@@ -6,7 +6,7 @@
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
   "engines": {
-    "node": ">=6"
+    "node": ">=4"
   },
   "scripts": {
     "build": "tsc && tsc -p tsconfig.esm.json && node scripts/buildMjsModule.js",
@@ -15,7 +15,7 @@
     "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
     "release": "standard-version",
-    "test": "alsatian \"./**/*.spec.js\""
+    "test": "tape build/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -32,18 +32,20 @@
   },
   "homepage": "https://github.com/jeskew/async-seq#readme",
   "devDependencies": {
-    "alsatian": "^2.0.0",
+    "@types/tape": "^4.2.31",
     "nyc": "^11.3.0",
     "standard-version": "^4.2.0",
+    "tape": "^4.9.0",
     "typedoc": "^0.10.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.7"
   },
   "dependencies": {
     "tslib": "^1.8.1"
   },
   "nyc": {
     "exclude": [
-      "**/*.spec.js"
+      "**/*.spec.js",
+      "**/*.fixture.js"
     ]
   }
 }

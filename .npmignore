@@ -17,3 +17,7 @@ yarn.lock
 *.spec.js
 *.spec.d.ts
 *.spec.js.map
+
+*.fixture.js
+*.fixture.d.ts
+*.fixture.js.map

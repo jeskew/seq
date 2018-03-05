@@ -1,0 +1,38 @@
+import { collect, SyncOrAsyncIterable, skipWhile } from '.';
+import { asyncify } from './testIterators.fixture';
+import * as test from 'tape';
+
+test('skipWhile', async t => {
+    const testCases: Array<[
+        (arg: number) => boolean|Promise<boolean>,
+        SyncOrAsyncIterable<number>,
+        Array<number>
+    ]> = [
+        [
+            (arg: number) => arg < 10,
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9],
+            [10, 9],
+        ],
+        [
+            (arg: number) => Promise.resolve(arg < 10),
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9],
+            [10, 9],
+        ],
+        [
+            (arg: number) => arg < 10,
+            asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
+            [10, 9],
+        ],
+        [
+            (arg: number) => Promise.resolve(arg < 10),
+            asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
+            [10, 9],
+        ],
+    ];
+
+    t.plan(testCases.length)
+
+    for (const [predicate, iterable, expected] of testCases) {
+        t.deepEqual(await collect(skipWhile(predicate, iterable)), expected)
+    }
+})
