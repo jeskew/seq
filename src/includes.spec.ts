@@ -1,9 +1,9 @@
-import { SyncOrAsyncIterable, range, includes } from '.';
+import { range, includes } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('includes', async t => {
-    const testCases: Array<[SyncOrAsyncIterable<number>, number, boolean]> = [
+    const testCases: Array<[Iterable<number>|AsyncIterable<number>, number, boolean]> = [
         [
             range(0, 10, 2),
             5,

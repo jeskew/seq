@@ -1,10 +1,10 @@
-import { range, some, SyncOrAsyncIterable } from '.';
+import { range, some } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('some', async t => {
     const testCases: Array<[
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         (arg: number) => boolean|Promise<boolean>,
         boolean
     ]> = [

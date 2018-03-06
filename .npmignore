@@ -11,6 +11,8 @@ tsconfig.json
 tsconfig.test.json
 yarn.lock
 
+rollup.config.js
+
 *.tgz
 *.log
 

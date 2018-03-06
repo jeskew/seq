@@ -1,10 +1,10 @@
-import { collect, map, range, SyncOrAsyncIterable } from '.';
+import { collect, map, range } from '.';
 import { asyncify } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('map', async t => {
     const testCases: Array<[
-        SyncOrAsyncIterable<number>,
+        Iterable<number>|AsyncIterable<number>,
         (arg: number) => number|Promise<number>,
         Array<number>
     ]> = [
@@ -20,7 +20,7 @@ test('map', async t => {
         ],
         [
             range(5),
-            (x: number) => Promise.resolve(x * x),
+            (x: number) => x * x,
             [0, 1, 4, 9, 16],
         ],
     ];

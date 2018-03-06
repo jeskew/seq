@@ -1,9 +1,9 @@
-import { range, repeat, SyncOrAsyncIterable, take } from '.';
+import { range, repeat, take } from '.';
 import { asyncify, throwOnIteration } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('take', async t => {
-    const testCases: Array<[number, SyncOrAsyncIterable<any>]> = [
+    const testCases: Array<[number, Iterable<any>|AsyncIterable<any>]> = [
         [10, repeat('foo')],
         [10, asyncify(repeat('foo'))],
         [10, range(5)],

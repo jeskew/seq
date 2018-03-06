@@ -10,7 +10,7 @@
     ],
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./build",
+    "outDir": "./lib",
     "rootDir": "./src",
     "downlevelIteration": true,
     "importHelpers": true,
