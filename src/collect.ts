@@ -11,16 +11,24 @@ export async function collect<T>(iterable: Iterable<T>|AsyncIterable<T>) {
 
     const iterator = iterable[Symbol.asyncIterator]();
     const collected: Array<T> = [];
-    for (
-        let next = await iterator.next(),
+    try {
+        for (
+            let next = await iterator.next(),
+                value = next.value,
+                done = next.done;
+            !done;
+            next = await iterator.next(),
             value = next.value,
-            done = next.done;
-        !done;
-        next = await iterator.next(),
-        value = next.value,
-        done = next.done
-    ) {
-        collected.push(value);
+            done = next.done
+        ) {
+            collected.push(value);
+        }
+    } catch (err) {
+        if (typeof iterator.return === 'function') {
+            await iterator.return();
+        }
+
+        throw err;
     }
 
     return collected;

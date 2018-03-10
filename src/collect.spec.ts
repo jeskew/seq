@@ -20,4 +20,40 @@ test('collect', async t => {
         [0, 1, 2, 3, 4, 5],
         await collect(range(6))
     )
-})
+});
+
+test('collect error handling', async t => {
+    t.plan(2);
+
+    class ExplosiveIterator {
+        [Symbol.asyncIterator]() {
+            return this;
+        }
+
+        next(): Promise<IteratorResult<void>> {
+            return Promise.reject(new Error('PANIC'));
+        }
+    }
+
+    try {
+        await collect(new ExplosiveIterator);
+    } catch {
+        t.pass('Error encountered while collecting is forwarded to caller');
+    }
+
+    class CloseHandlingIterator extends ExplosiveIterator {
+        returnCalled = false;
+
+        return(): Promise<IteratorResult<void>> {
+            this.returnCalled = true;
+            return Promise.resolve({done: true} as IteratorResult<void>);
+        }
+    }
+
+    const iter = new CloseHandlingIterator;
+    try {
+        await collect(iter);
+    } catch {
+        t.ok(iter.returnCalled, '.return should have been called');
+    }
+});
