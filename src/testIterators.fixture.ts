@@ -19,6 +19,25 @@ export function *fibonacci() {
     }
 }
 
-export function *throwOnIteration(): IterableIterator<never> {
-    throw new Error('PANIC PANIC');
+export class IterationDisallowedError extends Error {
+    name = 'IterationDisallowedError';
+}
+
+export class ExplosiveIterator {
+    [Symbol.asyncIterator]() {
+        return this;
+    }
+
+    next(): Promise<IteratorResult<void>> {
+        return Promise.reject(new IterationDisallowedError('PANIC'));
+    }
+}
+
+export class CloseHandlingIterator extends ExplosiveIterator {
+    returnCalled = false;
+
+    return(): Promise<IteratorResult<void>> {
+        this.returnCalled = true;
+        return Promise.resolve({done: true} as IteratorResult<void>);
+    }
 }

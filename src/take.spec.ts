@@ -1,5 +1,5 @@
 import { range, repeat, take } from '.';
-import { asyncify, throwOnIteration } from './testIterators.fixture';
+import { asyncify, ExplosiveIterator } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('take', async t => {
@@ -8,7 +8,7 @@ test('take', async t => {
         [10, asyncify(repeat('foo'))],
         [10, range(5)],
         [10, asyncify(range(5))],
-        [0, throwOnIteration()],
+        [0, new ExplosiveIterator()],
     ];
 
     t.plan(testCases.length)
