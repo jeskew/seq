@@ -1,5 +1,5 @@
 import { collect, filter, take } from '.';
-import { asyncFibonacci, fibonacci } from './testIterators.fixture';
+import { asyncFibonacci, fibonacci, DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling } from './testIterators.fixture';
 import * as test from 'tape';
 
 const filterEvens = filter.bind(null, (num: number) => num % 2 === 0)
@@ -30,4 +30,10 @@ test('filter is applied lazily', async t => {
         [2, 8, 34, 144, 610],
         await collect(take(5, filterEvens(asyncFibonacci())))
     )
+})
+
+test('filter error handling', async t => {
+    t.plan(DECORATOR_ERROR_TEST_COUNT)
+
+    await testDecoratorErrorHandling(filter.bind(null, () => true), t, 'filter')
 })

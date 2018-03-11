@@ -1,3 +1,4 @@
+import { AsyncIterableDecorator } from './AsyncIterableDecorator';
 import { isSyncIterable } from './isIterable';
 
 /**
@@ -27,17 +28,8 @@ export function *distinctSync<T>(iterable: Iterable<T>): IterableIterator<T> {
     }
 }
 
-class Deduplicator<T> implements AsyncIterableIterator<T> {
-    private readonly iterator: AsyncIterator<T>;
+class Deduplicator<T> extends AsyncIterableDecorator<T> {
     private readonly seen = new Set<T>();
-
-    constructor(iterable: AsyncIterable<T>) {
-        this.iterator = iterable[Symbol.asyncIterator]();
-    }
-
-    [Symbol.asyncIterator]() {
-        return this;
-    }
 
     next(): Promise<IteratorResult<T>> {
         return this.iterator.next().then(({done, value}) => {
@@ -52,13 +44,5 @@ class Deduplicator<T> implements AsyncIterableIterator<T> {
                 return {done, value};
             }
         })
-    }
-
-    return(): Promise<IteratorResult<T>> {
-        if (typeof this.iterator.return === 'function') {
-            return this.iterator.return();
-        }
-
-        return Promise.resolve({done: true} as IteratorResult<T>);
     }
 }
