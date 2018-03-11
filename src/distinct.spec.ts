@@ -1,13 +1,13 @@
 import { collect, distinct, take } from '.';
 import {
     asyncFibonacci,
-    CloseHandlingIterator,
-    ExplosiveIterator,
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling,
 } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('distinct', async t => {
-    t.plan(4)
+    t.plan(2 + DECORATOR_ERROR_TEST_COUNT)
 
     t.deepEqual(
         [1, 2, 3, 5],
@@ -19,16 +19,5 @@ test('distinct', async t => {
         await collect(distinct(take(5, asyncFibonacci())))
     )
 
-    try {
-        await collect(distinct(new ExplosiveIterator))
-    } catch (err) {
-        t.equal(err.name, 'IterationDisallowedError');
-    }
-
-    const iter = new CloseHandlingIterator;
-    try {
-        await collect(distinct(iter))
-    } catch {
-        t.ok(iter.returnCalled)
-    }
+    await testDecoratorErrorHandling(distinct, t, 'distinct');
 })

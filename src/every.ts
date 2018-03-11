@@ -1,17 +1,54 @@
+import { isSyncIterable } from './isIterable';
+
 /**
  * Determines whether all items yielded by an iterable satisfy the supplied
  * predicate.
  *
  * @param predicate A function that takes an element yielded by the provided
- *                  iterable and returns a boolean or a promise that resolves to
- *                  a boolean.
+ *                  iterable and returns a boolean.
  */
 export async function every<T>(
-    predicate: (arg: T) => boolean|Promise<boolean>,
+    predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
+): Promise<boolean> {
+    if (isSyncIterable(iterable)) {
+        return everySync(predicate, iterable);
+    }
+
+    return everyAsync(predicate, iterable);
+}
+
+export function everySync<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>
 ) {
-    for await (const element of iterable) {
-        if (!(await predicate(element))) {
+    for (const element of iterable) {
+        if (!predicate(element)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+async function everyAsync<T>(
+    predicate: (arg: T) => boolean,
+    iterable: AsyncIterable<T>
+) {
+    const iterator = iterable[Symbol.asyncIterator]();
+    for (
+        let next = await iterator.next(),
+            value = next.value,
+            done = next.done;
+        !done;
+        next = await iterator.next(),
+        value = next.value,
+        done = next.done
+    ) {
+        if (!predicate(value)) {
+            if (typeof iterator.return === 'function') {
+                await iterator.return();
+            }
             return false;
         }
     }
