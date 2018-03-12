@@ -1,3 +1,5 @@
+import { iteratorFromIterable } from './iteratorFromIterable';
+
 /**
  * Reduces an iterable to a single value by applying the provided `reducer`
  * function against an accumulator and each element yielded by the iterable (in
@@ -38,7 +40,16 @@ export async function reduce<T, R>(
         initialized = false;
     }
 
-    for await (const element of iterable) {
+    const iterator = iteratorFromIterable(iterable);
+    for (
+        let next = await iterator.next(),
+            element = next.value,
+            done = next.done;
+        !done;
+        next = await iterator.next(),
+        element = next.value,
+        done = next.done
+    ) {
         if (initialized) {
             value = await reducer(value, element);
         } else {
