@@ -1,5 +1,9 @@
 import { collect, map, range } from '.';
-import { asyncify } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('map', async t => {
@@ -25,7 +29,7 @@ test('map', async t => {
         ],
     ];
 
-    t.plan(testCases.length)
+    t.plan(testCases.length + DECORATOR_ERROR_TEST_COUNT)
 
     for (const [iterable, predicate, expected] of testCases) {
         t.deepEqual(
@@ -33,4 +37,6 @@ test('map', async t => {
             expected
         )
     }
+
+    testDecoratorErrorHandling(map.bind(null, (val: any) => val), t, 'map')
 })
