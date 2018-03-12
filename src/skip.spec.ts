@@ -1,5 +1,9 @@
 import { collect, range, skip } from '.';
-import { asyncify } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('skip', async t => {
@@ -30,9 +34,11 @@ test('skip', async t => {
         ],
     ];
 
-    t.plan(testCases.length)
+    t.plan(testCases.length + DECORATOR_ERROR_TEST_COUNT);
 
     for (const [toSkip, iterable, expected] of testCases) {
         t.deepEqual(await collect(skip(toSkip, iterable)), expected)
     }
+
+    testDecoratorErrorHandling(skip.bind(null, 10), t, 'skip');
 })
