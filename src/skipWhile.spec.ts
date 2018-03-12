@@ -1,5 +1,9 @@
 import { collect, skipWhile } from '.';
-import { asyncify } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('skipWhile', async t => {
@@ -30,9 +34,11 @@ test('skipWhile', async t => {
         ],
     ];
 
-    t.plan(testCases.length)
+    t.plan(testCases.length + DECORATOR_ERROR_TEST_COUNT)
 
     for (const [predicate, iterable, expected] of testCases) {
         t.deepEqual(await collect(skipWhile(predicate, iterable)), expected)
     }
+
+    testDecoratorErrorHandling(skipWhile.bind(null, () => false), t, 'skipWhile');
 })
