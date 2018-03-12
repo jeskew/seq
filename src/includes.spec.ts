@@ -1,5 +1,5 @@
 import { range, includes } from '.';
-import { asyncify } from './testIterators.fixture';
+import { asyncify, AsyncFibonacciSequence } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('includes', async t => {
@@ -26,7 +26,7 @@ test('includes', async t => {
         ],
     ];
 
-    t.plan(testCases.length)
+    t.plan(testCases.length + 1)
 
     for (const [iterable, searchElement, expectedResult] of testCases) {
         t.equal(
@@ -34,4 +34,10 @@ test('includes', async t => {
             expectedResult
         )
     }
+
+    t.equal(
+        await includes(34, new AsyncFibonacciSequence),
+        true,
+        'should handle terminating async iterators with no defined .return method'
+    )
 })
