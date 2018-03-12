@@ -1,4 +1,4 @@
-import { isSyncIterable } from './isIterable';
+import { iteratorFromIterable } from './iteratorFromIterable';
 
 /**
  * Mix zero or more synchronous or asynchronous iterables by alternating between
@@ -24,12 +24,9 @@ class InterleavingIterator<T> implements AsyncIterableIterator<T> {
 
     async next(): Promise<IteratorResult<T>> {
         if (this.sourceIterables.length > 0) {
-            const iterable = this.sourceIterables.shift() as Iterable<T>|AsyncIterable<T>;
-            this.iterators.push(
-                isSyncIterable(iterable)
-                    ? iterable[Symbol.iterator]()
-                    : iterable[Symbol.asyncIterator]()
-            );
+            this.iterators.push(iteratorFromIterable(
+                this.sourceIterables.shift() as Iterable<T>|AsyncIterable<T>
+            ));
         }
 
         if (this.iterators.length === 0) {

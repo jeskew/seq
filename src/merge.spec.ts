@@ -1,8 +1,23 @@
 import { collect, merge } from '.';
+import {
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('merge', async t => {
-    t.plan(2)
+    t.plan(3 + DECORATOR_ERROR_TEST_COUNT)
+
+    t.deepEqual(
+        await collect(merge(
+            [0, 4, 7, 9],
+            [1, 5, 8],
+            [2, 6],
+            [3],
+        )),
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        'should yield from synchronous iterators in the order in which they were received'
+    )
 
     t.deepEqual(
         await collect(merge(
@@ -47,5 +62,7 @@ test('merge', async t => {
         )),
         [0, 1, 2, 3],
         'should prioritize elements yielded by iterables provided first in the arguments'
-    )
+    );
+
+    testDecoratorErrorHandling(merge, t, 'merge');
 })

@@ -1,4 +1,6 @@
+import { filterSync } from './filter';
 import { iteratorFromIterable } from './iteratorFromIterable';
+import { mapSync } from './map';
 
 /**
  * Creates an asynchronous iterable that concurrently emits all values yielded
@@ -11,48 +13,95 @@ import { iteratorFromIterable } from './iteratorFromIterable';
  * Inspired by [RxJS's `merge`](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-merge)
  * operator.
  */
-export async function *merge<T>(
+export function merge<T>(
     ...iterables: Array<Iterable<T>|AsyncIterable<T>>
-) {
-    const pendingResults: Array<PendingResult<T>> = [];
-    for (const iterable of iterables) {
-        refillPending(pendingResults, iteratorFromIterable(iterable));
+): AsyncIterableIterator<T> {
+    return new MergeIterator(iterables);
+}
+
+class MergeIterator<T> implements AsyncIterableIterator<T> {
+    private readonly pending: Array<[
+        Iterator<T>|AsyncIterator<T>,
+        Promise<IteratorResult<Iterator<T>|AsyncIterator<T>>>
+    ]> = [];
+    private readonly resolved: Array<T> = [];
+
+    constructor(iterables: Iterable<Iterable<T>|AsyncIterable<T>>) {
+        for (const iterable of iterables) {
+            this.refillPending(iteratorFromIterable(iterable));
+        }
     }
 
-    while (pendingResults.length > 0) {
-        const {
-            result: {value, done},
-            iterator
-        } = await Promise.race(pendingResults.map(val => val.result));
+    [Symbol.asyncIterator]() {
+        return this;
+    }
 
-        for (let i = pendingResults.length - 1; i >= 0; i--) {
-            if (pendingResults[i].iterator === iterator) {
-                pendingResults.splice(i, 1);
+    async next(): Promise<IteratorResult<T>> {
+        if (this.resolved.length > 0) {
+            return { done: false, value: this.resolved.shift() as T };
+        }
+
+        if (this.pending.length === 0) {
+            return { done: true } as IteratorResult<T>;
+        }
+
+        const {done, value} = await Promise.race(
+            mapSync(pair => pair[1], this.pending)
+        );
+
+        for (let i = this.pending.length - 1; i >= 0; i--) {
+            if (this.pending[i][0] === value) {
+                this.pending.splice(i, 1);
             }
         }
 
         if (!done) {
-            yield value;
-            refillPending(pendingResults, iterator);
+            this.refillPending(value);
         }
+
+        return this.next();
+    }
+
+    async return(): Promise<IteratorResult<T>> {
+        await Promise.all(returnIterators(
+            mapSync(pair => pair[0], this.pending)
+        ));
+        this.pending.length = 0;
+
+        return { done: true } as IteratorResult<T>;
+    }
+
+    private refillPending(iterator: Iterator<T>|AsyncIterator<T>) {
+        this.pending.push([
+            iterator,
+            Promise.resolve(iterator.next()).then(
+                ({done, value}) => {
+                    if (!done) {
+                        this.resolved.push(value);
+                    }
+                    return {done, value: iterator};
+                },
+                err => {
+                    const returnErr = () => Promise.reject(err);
+                    return Promise.all(returnIterators(filterSync(
+                        iter => iter !== iterator,
+                        mapSync(pair => pair[0], this.pending)
+                    ))).then(returnErr, returnErr);
+                }
+            )
+        ]);
     }
 }
 
-interface PendingResult<T> {
-    iterator: Iterator<T>|AsyncIterator<T>;
-    result: Promise<{
-        iterator: Iterator<T>|AsyncIterator<T>;
-        result: IteratorResult<T>
-    }>;
-}
-
-function refillPending<T>(
-    pending: Array<PendingResult<T>>,
-    iterator: Iterator<T>|AsyncIterator<T>
-): void {
-    const result = Promise.resolve(iterator.next()).then(resolved => ({
-        iterator,
-        result: resolved
-    }));
-    pending.push({iterator, result});
+function returnIterators(
+    iterators: Iterable<Iterator<any>|AsyncIterator<any>>
+): Iterable<Promise<void|IteratorResult<any>>> {
+    return mapSync(
+        async (iterator): Promise<void|IteratorResult<any>> => {
+            if (typeof iterator.return === 'function') {
+                return iterator.return();
+            }
+        },
+        iterators
+    );
 }

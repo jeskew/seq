@@ -1,4 +1,5 @@
 import { isSyncIterable, isAsyncIterable } from './isIterable';
+import { iteratorFromIterable } from './iteratorFromIterable';
 
 /**
  * A synchronous iterable whose elements are either of type T or are themselves
@@ -172,11 +173,7 @@ class FlattenIterator<T> {
         private readonly depth: number,
         iterable: Iterable<T>|AsyncIterable<T>
     ) {
-        this.iteratorStack.push(
-            isSyncIterable(iterable)
-                ? iterable[Symbol.iterator]()
-                : iterable[Symbol.asyncIterator]()
-        );
+        this.iteratorStack.push(iteratorFromIterable(iterable));
     }
 
     [Symbol.asyncIterator]() {
