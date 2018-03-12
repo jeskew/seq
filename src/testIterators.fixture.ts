@@ -86,6 +86,15 @@ class ExplosiveCloseHandlingIterator extends CloseHandlingIterator {
     }
 }
 
+export class LazyInitializingIterator extends CloseHandlingIterator {
+    initialized = false;
+
+    [Symbol.asyncIterator]() {
+        this.initialized = true;
+        return this;
+    }
+}
+
 export const DECORATOR_ERROR_TEST_COUNT = 3;
 
 export async function testDecoratorErrorHandling(

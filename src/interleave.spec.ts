@@ -1,5 +1,5 @@
 import { collect, range, interleave } from '.';
-import { asyncify } from './testIterators.fixture';
+import { asyncify, CloseHandlingIterator, AsyncFibonacciSequence, LazyInitializingIterator } from './testIterators.fixture';
 import * as test from 'tape';
 
 test('interleave', async t => {
@@ -28,3 +28,43 @@ test('interleave', async t => {
         t.deepEqual(await collect(interleave(...toInterleave)), expected)
     }
 })
+
+test('interleave.return', async t => {
+    t.plan(4)
+
+    let returnTracking = [new CloseHandlingIterator, new CloseHandlingIterator]
+    let count = 0
+    for await (const _ of interleave(...returnTracking)) {
+        if (count++ === returnTracking.length) break;
+    }
+
+    t.equal(
+        true,
+        returnTracking.every(iter => iter.returnCalled),
+        'should communicate early termination to underlying iterators'
+    )
+
+    let fibs = [new AsyncFibonacciSequence, new AsyncFibonacciSequence]
+    count = 0
+    for await (const _ of interleave(...fibs)) {
+        if (count++ === fibs.length) break;
+    }
+
+    t.pass('should handle early termination of iterators with no return method')
+
+    let initTracking = [new LazyInitializingIterator, new LazyInitializingIterator]
+    let decorated = interleave(...initTracking);
+
+    t.equal(
+        true,
+        initTracking.every(iter => !iter.initialized),
+        'should lazily initialize underlying iterators'
+    );
+
+    (decorated as any).return()
+    t.equal(
+        true,
+        initTracking.every(iter => !iter.returnCalled),
+        'should not call return on uninitialized underlying iterators'
+    );
+});
