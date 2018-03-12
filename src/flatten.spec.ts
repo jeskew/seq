@@ -1,9 +1,13 @@
 import { collect, flatten } from '.';
-import { asyncify } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    testDecoratorErrorHandling
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('flatten', async t => {
-    t.plan(3)
+    t.plan(4 + DECORATOR_ERROR_TEST_COUNT)
 
     t.deepEqual(
         await collect(flatten(asyncify([[0], [1, 2], 3]))),
@@ -25,4 +29,12 @@ test('flatten', async t => {
         ['an', 'iterable', 'of', 'strings'],
         'does not flatten strings'
     )
+
+    t.deepEqual(
+        await collect(flatten(Infinity, [{foo: 'bar'}])),
+        [{foo: 'bar'}],
+        'should yield uniterable objects'
+    )
+
+    testDecoratorErrorHandling(flatten, t, 'flatten')
 })

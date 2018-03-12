@@ -1,4 +1,4 @@
-import { isIterable } from './isIterable';
+import { isSyncIterable, isAsyncIterable } from './isIterable';
 
 /**
  * A synchronous iterable whose elements are either of type T or are themselves
@@ -153,7 +153,7 @@ export function flatten<T>(
 export function flatten<T>(
     depthOrIterable: number|RecursiveIterable<T>,
     iterable?: RecursiveIterable<T>
-) {
+): RecursiveIterable<T> {
     let depth: number;
     if (typeof depthOrIterable === 'number') {
         depth = depthOrIterable;
@@ -162,18 +162,62 @@ export function flatten<T>(
         iterable = depthOrIterable;
     }
 
-    return flattenIntoIterable(depth, iterable as RecursiveIterable<T>);
+    return new FlattenIterator(depth, iterable as RecursiveIterable<T>);
 }
 
-async function *flattenIntoIterable<T>(
-    depth: number,
-    iterable: RecursiveIterable<T>
-): AsyncIterableIterator<T|RecursiveIterable<T>> {
-    for await (const element of iterable) {
-        if (typeof element !== 'string' && isIterable(element) && depth > 0) {
-            yield* flattenIntoIterable(depth - 1, element);
-        } else {
-            yield element;
+class FlattenIterator<T> {
+    private readonly iteratorStack: Array<Iterator<T>|AsyncIterator<T>> = [];
+
+    constructor(
+        private readonly depth: number,
+        iterable: Iterable<T>|AsyncIterable<T>
+    ) {
+        this.iteratorStack.push(
+            isSyncIterable(iterable)
+                ? iterable[Symbol.iterator]()
+                : iterable[Symbol.asyncIterator]()
+        );
+    }
+
+    [Symbol.asyncIterator]() {
+        return this;
+    }
+
+    async next(): Promise<IteratorResult<T>> {
+        const { length } = this.iteratorStack;
+        if (length === 0) {
+            return { done: true } as IteratorResult<T>;
         }
+
+        const { done, value } = await this.iteratorStack[length - 1].next();
+        if (done) {
+            this.iteratorStack.pop();
+            return this.next();
+        }
+
+        if (typeof value === 'object' && this.depth >= length) {
+            if (isSyncIterable<T>(value)) {
+                this.iteratorStack.push(value[Symbol.iterator]());
+                return this.next();
+            }
+
+            if (isAsyncIterable<T>(value)) {
+                this.iteratorStack.push(value[Symbol.asyncIterator]());
+                return this.next();
+            }
+        }
+
+        return { done, value };
+    }
+
+    async return(): Promise<IteratorResult<T>> {
+        let iterator: Iterator<T>|AsyncIterator<T>|undefined;
+        while (iterator = this.iteratorStack.pop()) {
+            if (typeof iterator.return === 'function') {
+                await iterator.return();
+            }
+        }
+
+        return { done: true } as IteratorResult<T>;
     }
 }
