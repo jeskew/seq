@@ -1,5 +1,10 @@
 import { range, repeat, take } from '.';
-import { asyncify, ExplosiveIterator } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    ExplosiveIterator,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('take', async t => {
@@ -9,9 +14,15 @@ test('take', async t => {
         [10, range(5)],
         [10, asyncify(range(5))],
         [0, new ExplosiveIterator()],
+        [
+            0,
+            (function *(): IterableIterator<never> {
+                throw new Error('PANIC');
+            })(),
+        ],
     ];
 
-    t.plan(testCases.length)
+    t.plan(testCases.length);
 
     for (const [limit, iterable] of testCases) {
         let count = 0
@@ -22,6 +33,13 @@ test('take', async t => {
         t.assert(
             count <= limit,
             `should fetch at most ${limit} elements from the source iterable`
-        )
+        );
     }
 })
+
+test('take error handling', async t => {
+
+    t.plan(DECORATOR_ERROR_TEST_COUNT);
+
+    testDecoratorErrorHandling(take.bind(null, 5), t, 'take');
+});
