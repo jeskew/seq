@@ -8,7 +8,7 @@ import * as test from 'tape';
 
 test('skipWhile', async t => {
     const testCases: Array<[
-        (arg: number) => boolean|Promise<boolean>,
+        (arg: number) => boolean,
         Iterable<number>|AsyncIterable<number>,
         Array<number>
     ]> = [
@@ -18,17 +18,7 @@ test('skipWhile', async t => {
             [10, 9],
         ],
         [
-            (arg: number) => Promise.resolve(arg < 10),
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9],
-            [10, 9],
-        ],
-        [
             (arg: number) => arg < 10,
-            asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
-            [10, 9],
-        ],
-        [
-            (arg: number) => Promise.resolve(arg < 10),
             asyncify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9]),
             [10, 9],
         ],

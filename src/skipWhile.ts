@@ -1,4 +1,5 @@
-import { iteratorFromIterable } from './iteratorFromIterable';
+import { AsyncIterableDecorator } from './AsyncIterableDecorator';
+import { isSyncIterable } from './isIterable';
 
 /**
  * Creates an asynchronous iterable of all but the first items in the provided
@@ -6,29 +7,39 @@ import { iteratorFromIterable } from './iteratorFromIterable';
  * returns `false`, all subsequent values will be yielded.
  *
  * @param predicate A function that takes an element yielded by the provided
- *                  iterable and returns a boolean or a promise that resolves to
- *                  a boolean.
+ *                  iterable and returns a boolean.
  */
 export function skipWhile<T>(
-    predicate: (arg: T) => boolean|Promise<boolean>,
+    predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
-): AsyncIterableIterator<T> {
+): IterableIterator<T>|AsyncIterableIterator<T> {
+    if (isSyncIterable(iterable)) {
+        return skipWhileSync(predicate, iterable);
+    }
+
     return new SkipWhileIterator(predicate, iterable);
 }
 
-class SkipWhileIterator<T> implements AsyncIterableIterator<T> {
-    private readonly iterator: Iterator<T>|AsyncIterator<T>;
+export function *skipWhileSync<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>
+) {
+    let satisfied = true;
+    for (const element of iterable) {
+        if (!satisfied || !(satisfied = predicate(element))) {
+            yield element;
+        }
+    }
+}
+
+class SkipWhileIterator<T> extends AsyncIterableDecorator<T> {
     private satisfied = true
 
     constructor(
-        private readonly predicate: (arg: T) => boolean|Promise<boolean>,
-        iterable: Iterable<T>|AsyncIterable<T>
+        private readonly predicate: (arg: T) => boolean,
+        iterable: AsyncIterable<T>
     ) {
-        this.iterator = iteratorFromIterable(iterable);
-    }
-
-    [Symbol.asyncIterator]() {
-        return this;
+        super(iterable);
     }
 
     async next(): Promise<IteratorResult<T>> {
@@ -42,13 +53,5 @@ class SkipWhileIterator<T> implements AsyncIterableIterator<T> {
         }
 
         return this.next();
-    }
-
-    async return(): Promise<IteratorResult<T>> {
-        if (typeof this.iterator.return === 'function') {
-            return this.iterator.return();
-        }
-
-        return { done: true } as IteratorResult<T>;
     }
 }
