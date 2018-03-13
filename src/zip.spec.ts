@@ -1,5 +1,10 @@
 import { collect, range, zip } from '.';
-import { asyncify } from './testIterators.fixture';
+import {
+    asyncify,
+    DECORATOR_ERROR_TEST_COUNT,
+    FibonacciSequence,
+    testDecoratorErrorHandling,
+} from './testIterators.fixture';
 import * as test from 'tape';
 
 test('zip', async t => {
@@ -12,6 +17,21 @@ test('zip', async t => {
             range(0, 100, 2),
             range(1, 10, 2),
             [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
+        ],
+        [
+            range(0, 10, 2),
+            range(1, 100, 2),
+            [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
+        ],
+        [
+            range(0, 10, 2),
+            new FibonacciSequence,
+            [[0, 1], [2, 1], [4, 2], [6, 3], [8, 5]],
+        ],
+        [
+            new FibonacciSequence,
+            range(0, 10, 2),
+            [[1, 0], [1, 2], [2, 4], [3, 6], [5, 8]],
         ],
         [
             asyncify(range(0, 100, 2)),
@@ -39,4 +59,10 @@ test('zip', async t => {
             'should zip sync and async iterables together'
         )
     }
-})
+});
+
+test('zip error handling', async t => {
+   t.plan(DECORATOR_ERROR_TEST_COUNT);
+
+   testDecoratorErrorHandling(zip.bind(null, new FibonacciSequence()), t, 'zip')
+});

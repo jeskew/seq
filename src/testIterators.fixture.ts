@@ -130,7 +130,7 @@ export async function testDecoratorErrorHandling(
     } catch (err) {
         testRunner.ok(
             iter.returnCalled,
-            `${name} should call .return on the underlying iterator when iteration is aborted`
+            `${name} should call .return on the underlying iterator when iteration triggers an error`
         );
     }
 }
