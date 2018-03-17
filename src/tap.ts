@@ -1,4 +1,4 @@
-import { iteratorFromIterable } from './iteratorFromIterable';
+import { AsyncIterableDecorator } from './AsyncIterableDecorator';
 
 /**
  * Execute an action for each value yielded by the provided iterable.
@@ -17,18 +17,12 @@ export function tap<T>(
     return new TapIterator(action, iterable);
 }
 
-class TapIterator<T> implements AsyncIterableIterator<T> {
-    private readonly iterator: Iterator<T>|AsyncIterator<T>;
-
+class TapIterator<T> extends AsyncIterableDecorator<T> {
     constructor(
         private readonly action: (arg: T) => void|Promise<void>,
         iterable: Iterable<T>|AsyncIterable<T>
     ) {
-        this.iterator = iteratorFromIterable(iterable);
-    }
-
-    [Symbol.asyncIterator]() {
-        return this;
+        super(iterable);
     }
 
     async next() {
@@ -38,13 +32,5 @@ class TapIterator<T> implements AsyncIterableIterator<T> {
         }
 
         return { done, value };
-    }
-
-    async return() {
-        if (typeof this.iterator.return === 'function') {
-            return this.iterator.return();
-        }
-
-        return { done: true } as IteratorResult<T>;
     }
 }

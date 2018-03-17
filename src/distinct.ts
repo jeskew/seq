@@ -39,18 +39,17 @@ export function *distinctSync<T>(iterable: Iterable<T>): IterableIterator<T> {
 class Deduplicator<T> extends AsyncIterableDecorator<T> {
     private readonly seen = new Set<T>();
 
-    next(): Promise<IteratorResult<T>> {
-        return this.iterator.next().then(({done, value}) => {
-            if (done) {
-                return {done, value};
-            }
+    async next(): Promise<IteratorResult<T>> {
+        const { done, value } = await this.iterator.next();
+        if (done) {
+            return {done, value};
+        }
 
-            if (this.seen.has(value)) {
-                return this.next();
-            } else {
-                this.seen.add(value);
-                return {done, value};
-            }
-        })
+        if (this.seen.has(value)) {
+            return this.next();
+        } else {
+            this.seen.add(value);
+            return {done, value};
+        }
     }
 }

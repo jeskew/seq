@@ -48,13 +48,12 @@ class MapIterator<T, R> extends AsyncIterableDecorator<R> {
         super(iterable as any);
     }
 
-    next(): Promise<IteratorResult<R>> {
-        return this.iterator.next().then(({done, value}: any) => {
+    async next(): Promise<IteratorResult<R>> {
+        const {done, value} = await this.iterator.next();
             if (done) {
                 return { done } as IteratorResult<R>;
             }
 
-            return { done, value: this.f(value) };
-        })
+        return { done, value: this.f(value as any) };
     }
 }
