@@ -8,6 +8,14 @@ import { isSyncIterable } from './isIterable';
  * i.e., it is evaluated via the [`SameValueZero` algorithm](http://www.ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
  * described in the ECMAScript 2015 specification.
  */
+export function distinct<T>(iterable: Iterable<T>): Iterable<T>;
+
+export function distinct<T>(iterable: AsyncIterable<T>): AsyncIterable<T>;
+
+export function distinct<T>(
+    iterable: Iterable<T>|AsyncIterable<T>
+): Iterable<T>|AsyncIterable<T>;
+
 export function distinct<T>(
     iterable: Iterable<T>|AsyncIterable<T>
 ): Iterable<T>|AsyncIterable<T> {

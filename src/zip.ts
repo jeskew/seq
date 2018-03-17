@@ -6,11 +6,22 @@ import { isSyncIterable } from './isIterable';
  * an ES6 Map object.
  *
  * If the two provided iterables are different lengths, the resulting iterable
- * will be the same length as the shorter of the two.
+ * will be the same length as the shorter of the two. The longer iterable will
+ * be terminated early.
  *
  * @param keys      The values to use as the first member of each pair.
  * @param values    The values to use as the second member of each pair.
  */
+export function zip<K, V>(
+    keys: Iterable<K>,
+    values: Iterable<V>
+): IterableIterator<[K, V]>;
+
+export function zip<K, V>(
+    keys: Iterable<K>|AsyncIterable<K>,
+    values: Iterable<V>|AsyncIterable<V>
+): AsyncIterableIterator<[K, V]>;
+
 export function zip<K, V>(
     keys: AsyncIterable<K>|Iterable<K>,
     values: AsyncIterable<V>|Iterable<V>

@@ -4,7 +4,9 @@ import { isSyncIterable } from './isIterable';
  * Collects the values yielded by a synchronous or asynchronous iterable into an
  * array.
  */
-export async function collect<T>(iterable: Iterable<T>|AsyncIterable<T>) {
+export async function collect<T>(
+    iterable: Iterable<T>|AsyncIterable<T>
+): Promise<Array<T>> {
     if (isSyncIterable(iterable)) {
         return [...iterable]
     }

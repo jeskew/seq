@@ -5,12 +5,12 @@ import * as test from 'tape';
 test('some', async t => {
     const testCases: Array<[
         Iterable<number>|AsyncIterable<number>,
-        (arg: number) => boolean|Promise<boolean>,
+        (arg: number) => boolean,
         boolean
     ]> = [
         [
             range(1, 10),
-            (num: number) => Promise.resolve(num % 2 === 0),
+            (num: number) => num % 2 === 0,
             true,
         ],
         [
@@ -25,7 +25,7 @@ test('some', async t => {
         ],
         [
             asyncify(range(1, 10, 2)),
-            (num: number) => Promise.resolve(num % 2 === 0),
+            (num: number) => num % 2 === 0,
             false,
         ],
     ];

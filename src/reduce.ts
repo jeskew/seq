@@ -1,4 +1,5 @@
 import { iteratorFromIterable } from './iteratorFromIterable';
+import { isSyncIterable } from './isIterable';
 
 /**
  * Reduces an iterable to a single value by applying the provided `reducer`
@@ -10,7 +11,7 @@ import { iteratorFromIterable } from './iteratorFromIterable';
  * its currentValue argument.
  */
 export async function reduce<T>(
-    reducer: (accumulator: T, currentValue: T) => T|Promise<T>,
+    reducer: (accumulator: T, currentValue: T) => T,
     iterable: Iterable<T>|AsyncIterable<T>
 ): Promise<T>;
 
@@ -23,13 +24,53 @@ export async function reduce<T>(
  *                      invocation of the reducer function.
  */
 export async function reduce<T, R>(
-    reducer: (accumulator: R, currentValue: T) => R|Promise<R>,
+    reducer: (accumulator: R, currentValue: T) => R,
     initialValue: R,
     iterable: Iterable<T>|AsyncIterable<T>
 ): Promise<R>;
 
 export async function reduce<T, R>(
-    reducer: (accumulator: R, currentValue: T) => R|Promise<R>,
+    reducer: (accumulator: R, currentValue: T) => R,
+    iterableOrInitialValue: R|Iterable<T>|AsyncIterable<T>,
+    iterable?: Iterable<T>|AsyncIterable<T>
+) {
+    if (!iterable) {
+        return isSyncIterable(iterableOrInitialValue)
+            ? reduceSync(reducer, iterableOrInitialValue)
+            : reduceAsync(reducer, iterableOrInitialValue);
+    }
+
+    return isSyncIterable(iterable)
+        ? reduceSync(reducer, iterableOrInitialValue as R, iterable)
+        : reduceAsync(reducer, iterableOrInitialValue as R, iterable);
+}
+
+export function reduceSync<T, R>(
+    reducer: (accumulator: R, currentValue: T) => R,
+    iterableOrInitialValue: R|Iterable<T>,
+    iterable?: Iterable<T>
+) {
+    let value: R = iterableOrInitialValue as R;
+    let initialized = true;
+    if (!iterable) {
+        iterable = iterableOrInitialValue as Iterable<T>;
+        initialized = false;
+    }
+
+    for (const element of iterable) {
+        if (initialized) {
+            value = reducer(value, element);
+        } else {
+            value = <R><any>element;
+            initialized = true;
+        }
+    }
+
+    return value;
+}
+
+async function reduceAsync<T, R>(
+    reducer: (accumulator: R, currentValue: T) => R,
     iterableOrInitialValue: R|Iterable<T>|AsyncIterable<T>,
     iterable?: Iterable<T>|AsyncIterable<T>
 ) {
@@ -51,7 +92,7 @@ export async function reduce<T, R>(
         done = next.done
     ) {
         if (initialized) {
-            value = await reducer(value, element);
+            value = reducer(value, element);
         } else {
             value = <R><any>element;
             initialized = true;

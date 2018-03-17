@@ -24,6 +24,8 @@ test('take', async t => {
 
     t.plan(testCases.length);
 
+    take(2, [1, 2, 3]);
+
     for (const [limit, iterable] of testCases) {
         let count = 0
         for await (const _ of take(limit, iterable)) {

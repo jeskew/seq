@@ -6,7 +6,7 @@ test('takeWhile', async t => {
     t.plan(3)
 
     t.deepEqual(
-        await collect(takeWhile((arg: number) => arg < 5, range(10))),
+        [...takeWhile((arg: number) => arg < 5, range(10))],
         [0, 1, 2, 3, 4],
         'should limit iteration of sync iterables'
     )

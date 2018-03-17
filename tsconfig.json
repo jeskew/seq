@@ -17,16 +17,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "noImplicitReturns": true
   },
   "typedocOptions": {
     "mode": "file",
     "out": "docs",
     "name": "async-seq",
-    "readme": "none",
-    "exclude": "**/*.spec.ts",
-    "excludeNotExported": true
+    "exclude": "**/*.+(spec|fixture).ts",
+    "excludeNotExported": true,
+    "excludePrivate": true
   }
 }

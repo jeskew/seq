@@ -8,10 +8,25 @@ import { isSyncIterable } from './isIterable';
  *                  iterable and returns a boolean or a promise that resolves to
  *                  a boolean.
  */
-export async function find<T>(
+export function find<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>
+): T;
+
+export function find<T>(
+    predicate: (arg: T) => boolean,
+    iterable: AsyncIterable<T>
+): Promise<T>;
+
+export function find<T>(
     predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
-) {
+): T|Promise<T>;
+
+export function find<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>|AsyncIterable<T>
+): T|Promise<T> {
     if (isSyncIterable(iterable)) {
         return findSync(predicate, iterable);
     }

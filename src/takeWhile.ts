@@ -10,6 +10,21 @@ import { isSyncIterable } from './isIterable';
  */
 export function takeWhile<T>(
     predicate: (arg: T) => boolean,
+    iterable: Iterable<T>
+): IterableIterator<T>;
+
+export function takeWhile<T>(
+    predicate: (arg: T) => boolean,
+    iterable: AsyncIterable<T>
+): AsyncIterableIterator<T>;
+
+export function takeWhile<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>|AsyncIterable<T>
+): IterableIterator<T>|AsyncIterableIterator<T>;
+
+export function takeWhile<T>(
+    predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
 ): IterableIterator<T>|AsyncIterableIterator<T> {
     if (isSyncIterable(iterable)) {
@@ -22,7 +37,7 @@ export function takeWhile<T>(
 export function *takeWhileSync<T>(
     predicate: (arg: T) => boolean|Promise<boolean>,
     iterable: Iterable<T>|AsyncIterable<T>
-) {
+): IterableIterator<T> {
     for (const element of iterable) {
         if (predicate(element)) {
             yield element;

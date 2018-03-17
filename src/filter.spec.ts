@@ -9,7 +9,7 @@ test('filter retains all elements that satisfy the predicate and discards the re
 
     t.deepEqual(
         [2, 8, 34],
-        await collect(filterEvens(take(10, fibonacci())))
+        [...filterEvens(take(10, fibonacci()))]
     )
 
     t.deepEqual(
@@ -23,7 +23,7 @@ test('filter is applied lazily', async t => {
 
     t.deepEqual(
         [2, 8, 34, 144, 610],
-        await collect(take(5, filterEvens(fibonacci())))
+        [...take(5, filterEvens(fibonacci()) as IterableIterator<number>)]
     )
 
     t.deepEqual(

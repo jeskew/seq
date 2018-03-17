@@ -1,9 +1,15 @@
 import { Test } from 'tape';
 
+/**
+ * @internal
+ */
 export async function *asyncFibonacci() {
     yield* new AsyncFibonacciSequence
 }
 
+/**
+ * @internal
+ */
 export async function *asyncify<T>(iterable: Iterable<T>) {
     for (const element of iterable) {
         yield element;
@@ -13,6 +19,9 @@ export async function *asyncify<T>(iterable: Iterable<T>) {
     }
 }
 
+/**
+ * @internal
+ */
 export class FibonacciSequence {
     private a = 1;
     private b = 1;
@@ -28,6 +37,9 @@ export class FibonacciSequence {
     }
 }
 
+/**
+ * @internal
+ */
 export class AsyncFibonacciSequence {
     private readonly seq = new FibonacciSequence;
 
@@ -43,7 +55,10 @@ export class AsyncFibonacciSequence {
     }
 }
 
-export function *fibonacci() {
+/**
+ * @internal
+ */
+export function *fibonacci(): IterableIterator<number> {
     yield* new FibonacciSequence;
 }
 
@@ -53,6 +68,9 @@ class IterationDisallowedError extends Error {
     name = IterationDisallowedErrorName;
 }
 
+/**
+ * @internal
+ */
 export class ExplosiveIterator {
     [Symbol.asyncIterator]() {
         return this;
@@ -63,6 +81,9 @@ export class ExplosiveIterator {
     }
 }
 
+/**
+ * @internal
+ */
 export class CloseHandlingIterator {
     returnCalled = false;
 
@@ -80,12 +101,18 @@ export class CloseHandlingIterator {
     }
 }
 
+/**
+ * @internal
+ */
 class ExplosiveCloseHandlingIterator extends CloseHandlingIterator {
     next(): Promise<IteratorResult<void>> {
         return Promise.reject(new IterationDisallowedError('PANIC'));
     }
 }
 
+/**
+ * @internal
+ */
 export class LazyInitializingIterator extends CloseHandlingIterator {
     initialized = false;
 
@@ -95,8 +122,14 @@ export class LazyInitializingIterator extends CloseHandlingIterator {
     }
 }
 
+/**
+ * @internal
+ */
 export const DECORATOR_ERROR_TEST_COUNT = 3;
 
+/**
+ * @internal
+ */
 export async function testDecoratorErrorHandling(
     decorator: (iterable: Iterable<any>|AsyncIterable<any>) => Iterable<any>|AsyncIterable<any>,
     testRunner: Test,

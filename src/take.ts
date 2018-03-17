@@ -9,6 +9,21 @@ import { isSyncIterable } from './isIterable';
  */
 export function take<T>(
     limit: number,
+    iterable: AsyncIterable<T>
+): AsyncIterableIterator<T>;
+
+export function take<T>(
+    limit: number,
+    iterable: Iterable<T>
+): IterableIterator<T>;
+
+export function take<T>(
+    limit: number,
+    iterable: Iterable<T>|AsyncIterable<T>
+): IterableIterator<T>|AsyncIterableIterator<T>;
+
+export function take<T>(
+    limit: number,
     iterable: Iterable<T>|AsyncIterable<T>
 ): IterableIterator<T>|AsyncIterableIterator<T> {
     if (isSyncIterable(iterable)) {
@@ -18,7 +33,10 @@ export function take<T>(
     return new TakeIterator(limit, iterable);
 }
 
-export function *takeSync<T>(limit: number, iterable: Iterable<T>) {
+export function *takeSync<T>(
+    limit: number,
+    iterable: Iterable<T>
+): IterableIterator<T> {
     if (limit <= 0) return;
 
     let i = 0;

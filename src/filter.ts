@@ -11,6 +11,21 @@ import { isSyncIterable } from './isIterable';
  */
 export function filter<T>(
     predicate: (arg: T) => boolean,
+    iterable: Iterable<T>
+): IterableIterator<T>;
+
+export function filter<T>(
+    predicate: (arg: T) => boolean,
+    iterable: AsyncIterable<T>
+): AsyncIterableIterator<T>;
+
+export function filter<T>(
+    predicate: (arg: T) => boolean,
+    iterable: Iterable<T>|AsyncIterable<T>
+): IterableIterator<T>|AsyncIterableIterator<T>;
+
+export function filter<T>(
+    predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
 ): IterableIterator<T>|AsyncIterableIterator<T> {
     if (isSyncIterable(iterable)) {

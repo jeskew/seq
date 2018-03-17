@@ -10,6 +10,21 @@ import { isSyncIterable } from './isIterable';
  */
 export function map<T, R>(
     f: (arg: T) => R,
+    iterable: Iterable<T>
+): IterableIterator<R>;
+
+export function map<T, R>(
+    f: (arg: T) => R,
+    iterable: AsyncIterable<T>
+): AsyncIterableIterator<R>;
+
+export function map<T, R>(
+    f: (arg: T) => R,
+    iterable: Iterable<T>|AsyncIterable<T>
+): IterableIterator<R>|AsyncIterableIterator<R>;
+
+export function map<T, R>(
+    f: (arg: T) => R,
     iterable: Iterable<T>|AsyncIterable<T>
 ): IterableIterator<R>|AsyncIterableIterator<R> {
     if (isSyncIterable(iterable)) {

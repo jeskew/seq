@@ -9,6 +9,21 @@ import { isSyncIterable } from './isIterable';
  */
 export function skip<T>(
     toSkip: number,
+    iterable: Iterable<T>
+): IterableIterator<T>;
+
+export function skip<T>(
+    toSkip: number,
+    iterable: AsyncIterable<T>
+): AsyncIterableIterator<T>;
+
+export function skip<T>(
+    toSkip: number,
+    iterable: Iterable<T>|AsyncIterable<T>
+): IterableIterator<T>|AsyncIterableIterator<T>;
+
+export function skip<T>(
+    toSkip: number,
     iterable: Iterable<T>|AsyncIterable<T>
 ): IterableIterator<T>|AsyncIterableIterator<T> {
     if (isSyncIterable(iterable)) {
