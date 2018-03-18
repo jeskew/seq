@@ -7,25 +7,10 @@ import { isSyncIterable } from './isIterable';
  * @param predicate A function that takes an element yielded by the provided
  *                  iterable and returns a boolean.
  */
-export function every<T>(
-    predicate: (arg: T) => boolean,
-    iterable: Iterable<T>
-): boolean;
-
-export function every<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>
-): Promise<boolean>;
-
-export function every<T>(
+export async function every<T>(
     predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
-): Promise<boolean>;
-
-export function every<T>(
-    predicate: (arg: T) => boolean,
-    iterable: Iterable<T>|AsyncIterable<T>
-): boolean|Promise<boolean> {
+): Promise<boolean> {
     if (isSyncIterable(iterable)) {
         return everySync(predicate, iterable);
     }

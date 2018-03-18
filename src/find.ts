@@ -5,28 +5,12 @@ import { isSyncIterable } from './isIterable';
  * supplied predicate.
  *
  * @param predicate A function that takes an element yielded by the provided
- *                  iterable and returns a boolean or a promise that resolves to
- *                  a boolean.
+ *                  iterable and returns a boolean.
  */
-export function find<T>(
-    predicate: (arg: T) => boolean,
-    iterable: Iterable<T>
-): T;
-
-export function find<T>(
-    predicate: (arg: T) => boolean,
-    iterable: AsyncIterable<T>
-): Promise<T>;
-
-export function find<T>(
+export async function find<T>(
     predicate: (arg: T) => boolean,
     iterable: Iterable<T>|AsyncIterable<T>
-): T|Promise<T>;
-
-export function find<T>(
-    predicate: (arg: T) => boolean,
-    iterable: Iterable<T>|AsyncIterable<T>
-): T|Promise<T> {
+): Promise<T> {
     if (isSyncIterable(iterable)) {
         return findSync(predicate, iterable);
     }
