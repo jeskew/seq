@@ -1,5 +1,4 @@
-import { take, range } from '.';
-import { collect } from './collect';
+import { collect, take, range } from '.';
 import { asyncFibonacci, fibonacci } from './testIterators.fixture';
 import * as test from 'tape';
 
