@@ -10,7 +10,7 @@ import { isSyncIterable } from './isIterable';
  * the underlying iterable as its accumulator and the second value yielded as
  * its currentValue argument.
  */
-export async function reduce<T>(
+export function reduce<T>(
     reducer: (accumulator: T, currentValue: T) => T,
     iterable: Iterable<T>|AsyncIterable<T>
 ): Promise<T>;
@@ -23,7 +23,7 @@ export async function reduce<T>(
  * @param initialValue  The value to use as the accumulator on the first
  *                      invocation of the reducer function.
  */
-export async function reduce<T, R>(
+export function reduce<T, R>(
     reducer: (accumulator: R, currentValue: T) => R,
     initialValue: R,
     iterable: Iterable<T>|AsyncIterable<T>
@@ -36,7 +36,7 @@ export async function reduce<T, R>(
 ) {
     if (!iterable) {
         return isSyncIterable(iterableOrInitialValue)
-            ? reduceSync(reducer, iterableOrInitialValue)
+            ? reduceSync(reducer as any, iterableOrInitialValue)
             : reduceAsync(reducer, iterableOrInitialValue);
     }
 
@@ -44,6 +44,17 @@ export async function reduce<T, R>(
         ? reduceSync(reducer, iterableOrInitialValue as R, iterable)
         : reduceAsync(reducer, iterableOrInitialValue as R, iterable);
 }
+
+export function reduceSync<T>(
+    reducer: (accumulator: T, currentValue: T) => T,
+    iterable: Iterable<T>
+): T;
+
+export function reduceSync<T, R>(
+    reducer: (accumulator: R, currentValue: T) => R,
+    initialValue: R,
+    iterable: Iterable<T>
+): R;
 
 export function reduceSync<T, R>(
     reducer: (accumulator: R, currentValue: T) => R,
