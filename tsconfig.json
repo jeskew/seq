@@ -22,7 +22,7 @@
   "typedocOptions": {
     "mode": "file",
     "out": "docs",
-    "name": "async-seq",
+    "name": "@jsq/seq",
     "exclude": "**/*.+(spec|fixture).ts",
     "excludeNotExported": true,
     "excludePrivate": true

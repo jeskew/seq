@@ -1,8 +1,8 @@
 # Async sequence operators
 
-[![npm version](https://badge.fury.io/js/%40jsq%2Fasync-seq.svg)](https://badge.fury.io/js/%40jsq%2Fasync-seq)
-[![Apache 2 License](https://img.shields.io/github/license/jeskew/async-seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/jeskew/async-seq.svg?branch=master)](https://travis-ci.org/jeskew/async-seq)
+[![npm version](https://badge.fury.io/js/%40jsq%2Fseq.svg)](https://badge.fury.io/js/%40jsq%2Fseq)
+[![Apache 2 License](https://img.shields.io/github/license/jeskew/seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.org/jeskew/seq.svg?branch=master)](https://travis-ci.org/jeskew/seq)
 
 This package provides a number of functions for filtering, reducing, combining,
 and otherwise transforming synchronous or asynchronous iterables. Where
@@ -18,7 +18,7 @@ an asynchronous iterable. These functions may also be suffixed with `Sync` for
 strictly synchronous usage:
 
 ```typescript
-import { map, mapSync } from '@jsq/async-seq';
+import { map, mapSync } from '@jsq/seq';
 
 // Synchronous iterables can be decorated and still consumed synchronously
 declare function syncSequence(): Iterable<number>;
@@ -49,7 +49,7 @@ All functions take an iterable as their last argument, which allows you to curry
 and compose operators with `bind`:
 
 ```typescript
-import { filter } from '@jsq/async-seq';
+import { filter } from '@jsq/seq';
 
 const evens = filter.bind(null, x => x % 2 === 0);
 ```
@@ -59,7 +59,7 @@ proposal](https://github.com/tc39/proposal-pipeline-operator) (currently at
 stage 1) in mind:
 
 ```typescript
-import { filter, map, sum, takeWhile } from '@jsq/async-seq';
+import { filter, map, sum, takeWhile } from '@jsq/seq';
 
 function *fibonacci() {
     let i = 1, j = 1;
@@ -77,4 +77,4 @@ const sumOfAllEvenFibonacciNumbersUnderTenMillion = fibonacci()
 ```
 
 For documentation of the functions provided by this library, please see [the API
-documentation](https://jeskew.github.io/async-seq/).
+documentation](https://jeskew.github.io/seq/).

@@ -1,7 +1,7 @@
 {
-  "name": "@jsq/async-seq",
+  "name": "@jsq/seq",
   "version": "0.3.0",
-  "description": "Lazy sequence operators for JavaScript backed by async iterators.",
+  "description": "Lazy sequence operators for JavaScript.",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeskew/async-seq.git"
+    "url": "git+https://github.com/jeskew/seq.git"
   },
   "keywords": [
     "asynciterator",
@@ -28,9 +28,9 @@
   "author": "Jonathan Eskew <jonathan@jeskew.net>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/jeskew/async-seq/issues"
+    "url": "https://github.com/jeskew/seq/issues"
   },
-  "homepage": "https://github.com/jeskew/async-seq#readme",
+  "homepage": "https://github.com/jeskew/seq#readme",
   "devDependencies": {
     "@types/tape": "^4.2.31",
     "nyc": "^11.3.0",
