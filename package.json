@@ -2,7 +2,7 @@
   "name": "@jsq/seq",
   "version": "0.4.1",
   "description": "Lazy sequence operators for JavaScript.",
-  "main": "lib/index.js",
+  "main": "lib/index",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
   "engines": {
