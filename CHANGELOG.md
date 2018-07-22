@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/jeskew/seq/compare/v0.4.1...v0.4.2) (2018-07-22)
+
+
+### Bug Fixes
+
+* ensure compatibility with native Node ESM system ([#8](https://github.com/jeskew/seq/issues/8)) ([41a52e5](https://github.com/jeskew/seq/commit/41a52e5))
+* export helper functions to match documentation ([#9](https://github.com/jeskew/seq/issues/9)) ([987b95c](https://github.com/jeskew/seq/commit/987b95c))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/jeskew/seq/compare/v0.4.0...v0.4.1) (2018-03-18)
 
