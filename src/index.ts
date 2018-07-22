@@ -16,6 +16,8 @@ export * from './flatMap';
 export * from './flatten';
 export * from './includes';
 export * from './interleave';
+export * from './isIterable';
+export * from './iteratorFromIterable';
 export * from './map';
 export * from './merge';
 export * from './range';
