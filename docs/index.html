@@ -62,7 +62,9 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="async-sequence-operators">Async sequence operators</h1>
+				<a href="#async-sequence-operators" id="async-sequence-operators" style="color: inherit; text-decoration: none;">
+					<h1>Async sequence operators</h1>
+				</a>
 				<p><a href="https://badge.fury.io/js/%40jsq%2Fseq"><img src="https://badge.fury.io/js/%40jsq%2Fseq.svg" alt="npm version"></a>
 					<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/github/license/jeskew/seq.svg?style=flat" alt="Apache 2 License"></a>
 				<a href="https://travis-ci.org/jeskew/seq"><img src="https://travis-ci.org/jeskew/seq.svg?branch=master" alt="Build Status"></a></p>
@@ -71,12 +73,14 @@
 					possible, the functions in this library mirror those found on <code>Array.prototype</code>.
 					Unlike the methods on <code>Array.prototype</code>, all functions are evaluated lazily and
 				will only be applied to values as they are produced.</p>
-				<h2 id="synchronous-and-asynchronous-iteration">Synchronous and asynchronous iteration</h2>
+				<a href="#synchronous-and-asynchronous-iteration" id="synchronous-and-asynchronous-iteration" style="color: inherit; text-decoration: none;">
+					<h2>Synchronous and asynchronous iteration</h2>
+				</a>
 				<p>Functions that decorate a single iterator will return a synchronous iterable if
 					called with a synchronous iterable and an asynchronous iterable if called with
 					an asynchronous iterable. These functions may also be suffixed with <code>Sync</code> for
 				strictly synchronous usage:</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { map, mapSync } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { map, mapSync } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
 
 <span class="hljs-comment">// Synchronous iterables can be decorated and still consumed synchronously</span>
 <span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">syncSequence</span>(<span class="hljs-params"></span>): <span class="hljs-title">Iterable</span>&lt;<span class="hljs-title">number</span>&gt;</span>;
@@ -91,24 +95,24 @@
 <span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">anySequence</span>(<span class="hljs-params"></span>): <span class="hljs-title">Iterable</span>&lt;<span class="hljs-title">number</span>&gt;|<span class="hljs-title">AsyncIterable</span>&lt;<span class="hljs-title">number</span>&gt;</span>;
 <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> squared of map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x, asyncSequence())) {
     <span class="hljs-comment">// ...</span>
-}
-</code></pre>
+}</code></pre>
 				<p>Functions that operate on multiple iterables, such as <code>zip</code>, <code>merge</code>,
 				<code>interleave</code>, or <code>flatMap</code>, will always return asynchronous iterables.</p>
 				<p>Functions that reduce iterables to a single value, such as <code>sum</code>, <code>collect</code>, or
 					<code>reduce</code>, will always return a promise, though the provided iterator may be
 				consumed synchronously.</p>
-				<h2 id="currying">Currying</h2>
+				<a href="#currying" id="currying" style="color: inherit; text-decoration: none;">
+					<h2>Currying</h2>
+				</a>
 				<p>All functions take an iterable as their last argument, which allows you to curry
 				and compose operators with <code>bind</code>:</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { filter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { filter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
 
-<span class="hljs-keyword">const</span> evens = filter.bind(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> evens = filter.bind(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>);</code></pre>
 				<p>This library was designed with <a href="https://github.com/tc39/proposal-pipeline-operator">the Pipeline Operator ECMAScript
 					proposal</a> (currently at
 				stage 1) in mind:</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { filter, map, sum, takeWhile } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { filter, map, sum, takeWhile } <span class="hljs-keyword">from</span> <span class="hljs-string">'@jsq/seq'</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">fibonacci</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">1</span>;
@@ -122,8 +126,7 @@
     |&gt; map.bind(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x)
     |&gt; filter.bind(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)
     |&gt; takeWhile.bind(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-number">10000000</span>)
-    |&gt; sum;
-</code></pre>
+    |&gt; sum;</code></pre>
 				<p>For documentation of the functions provided by this library, please see <a href="https://jeskew.github.io/seq/">the API
 				documentation</a>.</p>
 			</div>
@@ -290,6 +293,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -338,7 +342,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
