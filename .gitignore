@@ -7,3 +7,4 @@ package/
 yarn.lock
 *.tgz
 *.log
+package-lock.json

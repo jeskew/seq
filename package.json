@@ -10,7 +10,6 @@
   },
   "scripts": {
     "build": "tsc && rollup -c ./rollup.config.js",
-    "coverage": "nyc --reporter=lcov --reporter=html npm test && nyc report",
     "docs": "typedoc src",
     "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
@@ -33,13 +32,12 @@
   "homepage": "https://github.com/jeskew/seq#readme",
   "devDependencies": {
     "@types/tape": "^4.2.31",
-    "nyc": "^11.3.0",
-    "rollup": "^0.56.4",
-    "rollup-plugin-typescript": "^0.8.1",
-    "standard-version": "^4.2.0",
-    "tape": "^4.9.0",
-    "typedoc": "^0.11.0",
-    "typescript": "^2.7"
+    "rollup": "^1.0",
+    "rollup-plugin-typescript": "^1.0",
+    "standard-version": "^7.0",
+    "tape": "^4.11.0",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5"
   },
   "dependencies": {
     "tslib": "^1.8.1"
