@@ -1,6 +1,6 @@
-import { range, includes } from '.';
-import { asyncify, AsyncFibonacciSequence } from './testIterators.fixture';
-import * as test from 'tape';
+import { range, includes } from './index.js';
+import { asyncify, AsyncFibonacciSequence } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('includes', async t => {
     const testCases: Array<[Iterable<number>|AsyncIterable<number>, number, boolean]> = [

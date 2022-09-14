@@ -1,6 +1,6 @@
-import { sum, range } from '.';
-import { asyncify } from './testIterators.fixture';
-import * as test from 'tape';
+import { sum, range } from './index.js';
+import { asyncify } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('sum', async t => {
     t.plan(2)

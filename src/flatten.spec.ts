@@ -1,10 +1,10 @@
-import { collect, flatten } from '.';
+import { collect, flatten } from './index.js';
 import {
     asyncify,
     DECORATOR_ERROR_TEST_COUNT,
     testDecoratorErrorHandling
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('flatten', async t => {
     t.plan(4 + DECORATOR_ERROR_TEST_COUNT)
@@ -36,5 +36,5 @@ test('flatten', async t => {
         'should yield uniterable objects'
     )
 
-    testDecoratorErrorHandling(flatten, t, 'flatten')
+    await testDecoratorErrorHandling(flatten, t, 'flatten')
 })

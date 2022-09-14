@@ -1,11 +1,11 @@
-import { collect, range, zip } from '.';
+import { collect, range, zip } from './index.js';
 import {
     asyncify,
     DECORATOR_ERROR_TEST_COUNT,
     FibonacciSequence,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('zip', async t => {
     const testCases: Array<[
@@ -64,5 +64,5 @@ test('zip', async t => {
 test('zip error handling', async t => {
    t.plan(DECORATOR_ERROR_TEST_COUNT);
 
-   testDecoratorErrorHandling(zip.bind(null, new FibonacciSequence()), t, 'zip')
+   await testDecoratorErrorHandling(zip.bind(null, new FibonacciSequence()), t, 'zip')
 });

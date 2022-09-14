@@ -1,10 +1,10 @@
-import { collect, distinct, take } from '.';
+import { collect, distinct, take } from './index.js';
 import {
     asyncFibonacci,
     DECORATOR_ERROR_TEST_COUNT,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('distinct', async t => {
     t.plan(2 + DECORATOR_ERROR_TEST_COUNT)

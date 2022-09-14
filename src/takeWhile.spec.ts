@@ -1,6 +1,6 @@
-import { collect, takeWhile, range } from '.';
-import { asyncFibonacci, DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling, asyncify } from './testIterators.fixture';
-import * as test from 'tape';
+import { collect, takeWhile, range } from './index.js';
+import { asyncFibonacci, DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling, asyncify } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('takeWhile', async t => {
     t.plan(3)
@@ -28,5 +28,5 @@ test('takeWhile', async t => {
 test('takeWhile error handling', async t => {
     t.plan(DECORATOR_ERROR_TEST_COUNT);
 
-    testDecoratorErrorHandling(takeWhile.bind(null, () => true), t, 'takeWhile')
+    await testDecoratorErrorHandling(takeWhile.bind(null, () => true), t, 'takeWhile')
 });

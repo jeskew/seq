@@ -1,6 +1,6 @@
-import { collect, filter, take } from '.';
-import { asyncFibonacci, fibonacci, DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling } from './testIterators.fixture';
-import * as test from 'tape';
+import { collect, filter, take } from './index.js';
+import { asyncFibonacci, fibonacci, DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling } from './testIterators.fixture.js';
+import test from 'tape';
 
 const acceptEvens = (num: number) => num % 2 === 0;
 

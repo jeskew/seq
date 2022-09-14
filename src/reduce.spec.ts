@@ -1,6 +1,6 @@
-import { range, reduce } from '.';
-import { asyncify } from './testIterators.fixture';
-import * as test from 'tape';
+import { range, reduce } from './index.js';
+import { asyncify } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('reduce with an initial value', async t => {
     const testCases: Array<[
