@@ -1,5 +1,5 @@
-import { range } from '.';
-import * as test from 'tape';
+import { range } from './index.js';
+import test from 'tape';
 
 test('range', async t => {
     t.plan(4)

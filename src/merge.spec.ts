@@ -1,9 +1,9 @@
-import { collect, merge } from '.';
+import { collect, merge } from './index.js';
 import {
     DECORATOR_ERROR_TEST_COUNT,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('merge', async t => {
     t.plan(3 + DECORATOR_ERROR_TEST_COUNT)
@@ -64,5 +64,5 @@ test('merge', async t => {
         'should prioritize elements yielded by iterables provided first in the arguments'
     );
 
-    testDecoratorErrorHandling(merge, t, 'merge');
+    await testDecoratorErrorHandling(merge, t, 'merge');
 })

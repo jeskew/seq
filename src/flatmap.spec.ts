@@ -1,6 +1,6 @@
-import { collect, flatMap, range } from '.';
-import { asyncify } from './testIterators.fixture';
-import * as test from 'tape';
+import { collect, flatMap, range } from './index.js';
+import { asyncify } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('flatmap', async t => {
     t.plan(1)

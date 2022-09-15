@@ -1,10 +1,10 @@
-import { every, range } from '.';
+import { every, range } from './index.js';
 import {
     AsyncFibonacciSequence,
     asyncify,
     CloseHandlingIterator,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('every', async t => {
     t.plan(6)

@@ -1,11 +1,11 @@
-import { find, range } from '.';
+import { find, range } from './index.js';
 import {
     AsyncFibonacciSequence,
     asyncify,
     CloseHandlingIterator,
     fibonacci,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('find', async t => {
     t.plan(5)

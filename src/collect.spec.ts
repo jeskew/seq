@@ -1,6 +1,6 @@
-import { collect, take, range } from '.';
-import { asyncFibonacci, fibonacci } from './testIterators.fixture';
-import * as test from 'tape';
+import { collect, take, range } from './index.js';
+import { asyncFibonacci, fibonacci } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('collect', async t => {
     t.plan(3)

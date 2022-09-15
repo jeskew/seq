@@ -1,19 +1,18 @@
 {
   "name": "@jsq/seq",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Lazy sequence operators for JavaScript.",
-  "main": "lib/index",
-  "module": "lib/index.mjs",
+  "main": "lib/index.js",
+  "type": "module",
   "types": "lib/index.d.ts",
   "engines": {
     "node": ">=4"
   },
   "scripts": {
-    "build": "tsc && rollup -c ./rollup.config.js",
+    "build": "tsc --declaration && tsc --removeComments",
     "docs": "typedoc src",
     "prepublishOnly": "npm run build",
     "pretest": "tsc -p tsconfig.test.json",
-    "release": "standard-version",
     "test": "tape lib/*.spec.js"
   },
   "repository": {
@@ -31,16 +30,10 @@
   },
   "homepage": "https://github.com/jeskew/seq#readme",
   "devDependencies": {
-    "@types/tape": "^4.2.31",
-    "rollup": "^1.0",
-    "rollup-plugin-typescript": "^1.0",
-    "standard-version": "^8.0",
-    "tape": "^4.11.0",
-    "typedoc": "^0.15.0",
-    "typescript": "^3.5"
-  },
-  "dependencies": {
-    "tslib": "^1.8.1"
+    "@types/tape": "^4.13.2",
+    "tape": "^5.6.0",
+    "typedoc": "^0.23.14",
+    "typescript": "^4.7"
   },
   "nyc": {
     "exclude": [

@@ -1,6 +1,6 @@
-import { collect, range, interleave } from '.';
-import { asyncify, CloseHandlingIterator, AsyncFibonacciSequence, LazyInitializingIterator } from './testIterators.fixture';
-import * as test from 'tape';
+import { collect, range, interleave } from './index.js';
+import { asyncify, CloseHandlingIterator, AsyncFibonacciSequence, LazyInitializingIterator } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('interleave', async t => {
     const testCases: Array<[Array<number>, Array<Iterable<number>|AsyncIterable<number>>]> = [

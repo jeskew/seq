@@ -1,10 +1,10 @@
-import { collect, map, range } from '.';
+import { collect, map, range } from './index.js';
 import {
     asyncify,
     DECORATOR_ERROR_TEST_COUNT,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('map', async t => {
     const testCases: Array<[
@@ -38,5 +38,5 @@ test('map', async t => {
         )
     }
 
-    testDecoratorErrorHandling(map.bind(null, (val: any) => val), t, 'map')
+    await testDecoratorErrorHandling(map.bind(null, (val: any) => val), t, 'map')
 })

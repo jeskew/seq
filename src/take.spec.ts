@@ -1,11 +1,11 @@
-import { range, repeat, take } from '.';
+import { range, repeat, take } from './index.js';
 import {
     asyncify,
     DECORATOR_ERROR_TEST_COUNT,
     ExplosiveIterator,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('take', async t => {
     const testCases: Array<[number, Iterable<any>|AsyncIterable<any>]> = [
@@ -40,8 +40,7 @@ test('take', async t => {
 })
 
 test('take error handling', async t => {
-
     t.plan(DECORATOR_ERROR_TEST_COUNT);
 
-    testDecoratorErrorHandling(take.bind(null, 5), t, 'take');
+    await testDecoratorErrorHandling(take.bind(null, 5), t, 'take');
 });

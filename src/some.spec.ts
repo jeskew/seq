@@ -1,6 +1,6 @@
-import { range, some } from '.';
-import { asyncify, AsyncFibonacciSequence } from './testIterators.fixture';
-import * as test from 'tape';
+import { range, some } from './index.js';
+import { asyncify, AsyncFibonacciSequence } from './testIterators.fixture.js';
+import test from 'tape';
 
 test('some', async t => {
     const testCases: Array<[

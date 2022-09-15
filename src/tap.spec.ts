@@ -1,6 +1,6 @@
-import { range, tap } from '.';
-import * as test from 'tape';
-import { DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling } from './testIterators.fixture';
+import { range, tap } from './index.js';
+import test from 'tape';
+import { DECORATOR_ERROR_TEST_COUNT, testDecoratorErrorHandling } from './testIterators.fixture.js';
 
 test('tap', async t => {
     t.plan(1)
@@ -15,5 +15,5 @@ test('tap', async t => {
 test('tap error handling', async t => {
     t.plan(DECORATOR_ERROR_TEST_COUNT);
 
-    testDecoratorErrorHandling(tap.bind(null, async () => {}), t, 'tap');
+    await testDecoratorErrorHandling(tap.bind(null, async () => {}), t, 'tap');
 });

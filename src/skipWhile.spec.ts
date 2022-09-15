@@ -1,10 +1,10 @@
-import { collect, skipWhile } from '.';
+import { collect, skipWhile } from './index.js';
 import {
     asyncify,
     DECORATOR_ERROR_TEST_COUNT,
     testDecoratorErrorHandling,
-} from './testIterators.fixture';
-import * as test from 'tape';
+} from './testIterators.fixture.js';
+import test from 'tape';
 
 test('skipWhile', async t => {
     const testCases: Array<[
@@ -30,5 +30,5 @@ test('skipWhile', async t => {
         t.deepEqual(await collect(skipWhile(predicate, iterable)), expected)
     }
 
-    testDecoratorErrorHandling(skipWhile.bind(null, () => false), t, 'skipWhile');
+    await testDecoratorErrorHandling(skipWhile.bind(null, () => false), t, 'skipWhile');
 })
