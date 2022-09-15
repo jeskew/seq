@@ -54,27 +54,5 @@ import { filter } from '@jsq/seq';
 const evens = filter.bind(null, x => x % 2 === 0);
 ```
 
-This library was designed with [the Pipeline Operator ECMAScript
-proposal](https://github.com/tc39/proposal-pipeline-operator) (currently at
-stage 1) in mind:
-
-```typescript
-import { filter, map, sum, takeWhile } from '@jsq/seq';
-
-function *fibonacci() {
-    let i = 1, j = 1;
-    do {
-        yield i;
-        [i, j] = [j, j + i];
-    } while (true);
-}
-
-const sumOfAllEvenFibonacciNumbersUnderTenMillion = fibonacci()
-    |> map.bind(null, x => x * x)
-    |> filter.bind(null, x => x % 2 === 0)
-    |> takeWhile.bind(null, x => x < 10000000)
-    |> sum;
-```
-
 For documentation of the functions provided by this library, please see [the API
 documentation](https://jeskew.github.io/seq/).
