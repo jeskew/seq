@@ -1,8 +1,8 @@
 # Async sequence operators
 
 [![npm version](https://badge.fury.io/js/%40jsq%2Fseq.svg)](https://badge.fury.io/js/%40jsq%2Fseq)
+[![minified gzipped size](https://badgen.net/bundlephobia/minzip/@jsq/seq)]
 [![Apache 2 License](https://img.shields.io/github/license/jeskew/seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/jeskew/seq.svg?branch=master)](https://travis-ci.org/jeskew/seq)
 
 This package provides a number of functions for filtering, reducing, combining,
 and otherwise transforming synchronous or asynchronous iterables. Where
