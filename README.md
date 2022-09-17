@@ -1,7 +1,7 @@
 # Async sequence operators
 
 [![npm version](https://badge.fury.io/js/%40jsq%2Fseq.svg)](https://badge.fury.io/js/%40jsq%2Fseq)
-[![minified gzipped size](https://badgen.net/bundlephobia/minzip/@jsq/seq)]
+[![minified gzipped size](https://badgen.net/bundlephobia/minzip/@jsq/seq)](https://bundlephobia.com/package/@jsq/seq)
 [![Apache 2 License](https://img.shields.io/github/license/jeskew/seq.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 This package provides a number of functions for filtering, reducing, combining,
