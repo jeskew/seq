@@ -1507,7 +1507,7 @@ class ZipIterator<K, V> implements AsyncIterableIterator<[K, V]> {
         const { done: keysDone, value: key } = await this.keys.next();
         const { done: valuesDone, value } = await this.values.next();
 
-        if ((this.keysDone = keysDone ?? false) || (this.valuesDone = valuesDone ?? false)) {
+        if ((this.keysDone = keysDone || false) || (this.valuesDone = valuesDone || false)) {
             return this.return();
         }
 
